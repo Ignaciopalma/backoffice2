@@ -1,0 +1,162 @@
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-maps-directions-bike"></i> Entregas</h3>
+    <%= link_to new_admin_delivery_path , :class=>'title-link btn waves-effect waves-light' do %>
+        <i class="mdi-content-add"></i> Crear entrega
+    <% end %>
+  </div>
+</div>
+
+<nav class="filter-nav">
+  <div class="nav-wrapper grey lighten-1">
+    <ul class="left ">
+      <% if params[:state].blank? && params[:confirmed].blank? && params[:pay].blank? && params[:sender_pay].blank?%>
+          <li class="active"><%= link_to "Todos", admin_deliveries_path() %></li>
+      <% else %>
+          <li><%= link_to "Todos", admin_deliveries_path() %></li>
+      <% end %>
+
+      <% State.all.each do |ix| %>
+          <% if ix.id.to_i == params[:state].to_i %>
+              <li class="active"><%= link_to ix.name, admin_deliveries_path(state: ix.id) %></li>
+          <% else %>
+              <li><%= link_to ix.name, admin_deliveries_path(state: ix.id) %></li>
+          <% end %>
+      <% end %>
+      <% if params[:confirmed].present? %>
+          <li class="active"><%= link_to "Confirmados", admin_deliveries_path(confirmed: 1) %> </li>
+      <% else %>
+          <li><%= link_to "Confirmados", admin_deliveries_path(confirmed: 1) %> </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="nav-wrapper grey lighten-1">
+    <ul class="left ">
+      <% if params[:sender_pay].present? && params[:sender_pay].to_i == 1 %>
+          <li class="active"><%= link_to "Por pagar (Empresa)", admin_deliveries_path(sender_pay: 1) %> </li>
+      <% else %>
+          <li><%= link_to "Por pagar (Empresa)", admin_deliveries_path(sender_pay: 1) %> </li>
+      <% end %>
+
+      <% if params[:sender_pay].present? && params[:sender_pay].to_i == 2 %>
+          <li class="active"><%= link_to "Pagados (Empresa)", admin_deliveries_path(sender_pay: 2) %> </li>
+      <% else %>
+          <li><%= link_to "Pagados (Empresa)", admin_deliveries_path(sender_pay: 2) %> </li>
+      <% end %>
+
+      <% if params[:pay].present? and params[:pay].to_i == 1 %>
+          <li class="active"><%= link_to "Por pagar (Ciclista)", admin_deliveries_path(pay: 1) %> </li>
+      <% else %>
+          <li><%= link_to "Por pagar (Ciclista)", admin_deliveries_path(pay: 1) %> </li>
+      <% end %>
+
+      <% if params[:pay].present? and params[:pay].to_i == 2 %>
+          <li class="active"><%= link_to "Pagados (Ciclista)", admin_deliveries_path(pay: 2) %> </li>
+      <% else %>
+          <li><%= link_to "Pagados (Ciclista)", admin_deliveries_path(pay: 2) %> </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<div class="row">
+  <div class="input-field col s8">
+    <b>Cantidad de envíos: </b> <%= @deliveries.length %>
+    <br/>
+    <b>IVA acumulado: </b> $<%= number_to_currency(@iva, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <br/>
+    <b>Monto acumulado Velo Express: </b> $<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <br/>
+    <b>Monto acumulado Ciclistas: </b> $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+  </div>
+  <div class="input-field col s2">
+    <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+  </div>
+  <div class="input-field col s2">
+    <%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+  </div>
+
+  <script>
+    var filter = function(){
+        console.log($('#delivery_month').val());
+        console.log($('#delivery_year').val());
+        var query = updateQueryStringParameter(window.location.href, 'month', $('#delivery_month').val());
+        query = updateQueryStringParameter(query, 'year', $('#delivery_year').val());
+        window.open(query , "_self");
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+            return uri + separator + key + "=" + value;
+        }
+    }
+    </script>
+</div>
+
+<table class="bordered centered hoverable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Empresa</th>
+    <th>Ciclista</th>
+    <th>Destinatario</th>
+    <th>Estado</th>
+    <th>Confirmado</th>
+    <th>$VX</th>
+    <th>$Ciclista</th>
+    <th class="actions" colspan="3">Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @deliveries.each do |delivery| %>
+      <tr>
+        <td><%= link_to (sprintf '%04d', delivery.id), admin_delivery_path(delivery) %></td>
+        <td><%= link_to delivery.sender.business_name, admin_sender_path(delivery.sender) %></td>
+        <td>
+          <% if delivery.user.present? %>
+              <a data-position="bottom" data-delay="50" data-tooltip="
+              <%= delivery.user.first_name %> <%= delivery.user.last_name %>" class="btn-floating tooltipped green" href="<%= admin_user_path(delivery.user) %>">
+                <i class=" mdi-action-account-circle"></i>
+              </a>
+          <% else %>
+              <a data-position="bottom" data-delay="50" data-tooltip="Información no disponible aún" class="btn-floating tooltipped grey">
+                <i class="mdi-action-account-circle"></i></a>
+          <% end %>
+        </td>
+        <td><%= delivery.destinatary_name %></td>
+        <td><%= get_estado delivery %></td>
+        <td><% if delivery.confirmed == 1 %>si<% else %>no<% end %></td>
+        <td>$<%= delivery.vx_comission.round %></td>
+        <td>$<%= delivery.comission %></td>
+        <td>
+          <%= link_to admin_delivery_path(delivery), :class => 'btn-floating green' do %>
+              <i class="mdi-image-remove-red-eye"></i>
+          <% end %>
+          <%= link_to edit_admin_delivery_path(delivery), :class => 'btn-floating yellow darken-2 ' do %>
+              <i class="mdi-editor-mode-edit"></i>
+          <% end %>
+          <%= link_to admin_delivery_path(delivery), :class => 'btn-floating red',  :method => :delete , :data => {:confirm => '¿Seguro que deseas eliminar esta entrega?'} do %>
+              <i class="mdi-content-clear"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  <% if @deliveries.length == 0 %>
+      <tr>
+        <td class="empty" colspan="8">
+          <h4><i class="mdi-alert-error"></i> No hay carreras</h4>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>

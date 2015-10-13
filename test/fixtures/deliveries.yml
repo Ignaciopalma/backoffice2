@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  sender_id: 1
+  ciclyst_id: 1
+  eta: 1
+  km: 1
+  state: 1
+  pay_state: 1
+  comuna_start: MyString
+  comuna_finish: MyString
+  lat_start: 
+  long_start: 
+  lat_finish: 
+  long_finish: 
+  photo_id: MyString
+  address_start: MyString
+  address_finish: MyString
+  comission: 1
+
+two:
+  id: 1
+  sender_id: 1
+  ciclyst_id: 1
+  eta: 1
+  km: 1
+  state: 1
+  pay_state: 1
+  comuna_start: MyString
+  comuna_finish: MyString
+  lat_start: 
+  long_start: 
+  lat_finish: 
+  long_finish: 
+  photo_id: MyString
+  address_start: MyString
+  address_finish: MyString
+  comission: 1

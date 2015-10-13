@@ -1,0 +1,71 @@
+/*
+ * SECTIONS
+ * ------------
+ * 01. Variables
+ * 02. Main Layout
+ *  
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+*/
+
+/* ***************** */
+/* 01. VARIABLES */
+/* ***************** */
+
+@import "materialize/components/color";
+$primary-color: color("green", "darken-3") !default;
+$secondary-color: color("green", "darken-1") !default;
+@import "materialize";
+/* ***************** */
+/* 02. MAIN LAYOUT */
+/* ***************** */
+
+/* main-content is the container that has the <% yield %> tag */
+.main-content .modal-form-container{
+	min-width: 400px;
+	width: 400px;
+	margin: 0 auto;
+	padding: 0;
+	background-color: white;
+}
+
+/* logo */
+.logo{
+	padding: 2em 0;
+	margin-bottom: 0;
+}
+
+/* .modal-form-container title styling */
+.main-content .modal-form-container .form-title{
+	background-color: $secondary-color;
+	height: 45px;
+}
+
+.main-content .modal-form-container .form-title h4{
+	color: white;
+	font-size: 20px;
+	margin: 0;
+	line-height: 45px;
+	padding: 0 10px;
+}
+.main-content .modal-form-container .content{
+	padding: 1em;
+}
+
+.main-content .modal-form-container .content .checkbox-padding {
+	padding-left: 53px !important;
+}
+
+
+

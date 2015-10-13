@@ -1,0 +1,182 @@
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-action-info-outline"></i> Detalle carrera</h3>
+    <%= link_to "IMPRIMIR", '#', onclick: "printpage()", :class => 'title-link btn waves-effect waves-light'%>
+
+  </div>
+</div>
+
+<h4>ESTADO:  <%= @delivery.state.name.upcase %>, <% if @delivery.confirmed == 1 %> CONFIRMADO. <% else %> NO CONFIRMADO. <% end %></h4>
+<h4>EMPRESA: <%= @delivery.sender_pay_state.name.upcase%> </h4> <h4> CICLISTA: <%= @delivery.pay_state.name.upcase %></h4>
+
+
+<div class="row delivery">
+
+  <div class="row">
+    <div class="qr-container col s6">
+      <%= raw @QR.as_svg %>
+    </div>
+
+    <div class="col info s5">
+      <div class="card-panel">
+        <ul>
+          <li>Desde: <%= @delivery.address_start %> (<%= @delivery.comuna_start %>)</li>
+          <li>Hasta: <%= @delivery.address_finish %> (<%= @delivery.comuna_finish %>)</li>
+          <% if @delivery.both_ways%>
+              <li>Tipo: Ida y vuelta</li>
+          <% else %>
+              <li>Tipo: Normal</li>
+          <% end %>
+          <li>Estado: <%= get_estado @delivery %></li>
+          <li>Distancia: <%= @delivery.km %> kms</li>
+          <li>Tiempo: <%= @delivery.eta %> mins</li>
+          <% if @delivery.user.present?%>
+              <li>Ciclista: <%= @delivery.user.first_name+" "+@delivery.user.last_name  %></li>
+          <% else %>
+              <li>Ciclista: Disponible</li>
+          <% end %>
+          <li>Destinatario: <%= @delivery.destinatary_name %></li>
+          <li>Mail Destinatario: <%= @delivery.destinatary_email %></li>
+          <li>Costo: $<%= @delivery.cost %></li>
+          <li>Comisión: $<%= @delivery.comission %></li>
+          <li>Día de pago: <%= @delivery.pay_date.strftime("%d/%m/%Y") %></li>
+          <% if @delivery.department_number.present?%>
+              <li>Departamento: <%= @delivery.department_number %></li>
+          <% end %>
+          <% if @delivery.more_info.present?%>
+              <li>Información adicional: <%= @delivery.more_info  %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <% if @delivery.confirmed.to_i == 0 %>
+        <%= link_to 'Confirmar pedido', 'confirm_delivery/'+ @delivery.id.to_s, {:class => "waves-effect waves-light btn"} %>
+    <% end %>
+
+    <% if @delivery.sender_pay_state_id == 1 %>
+        <%= link_to 'Marcar pago (empresa)', 'sender_pay_delivery/'+ @delivery.id.to_s, {:class => "waves-effect waves-light btn"} %>
+    <% end %>
+
+    <% if @delivery.pay_state_id == 1 %>
+        <%= link_to 'Marcar pago (ciclista)', 'pay_delivery/'+ @delivery.id.to_s, {:class => "waves-effect waves-light btn"} %>
+    <% end %>
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="col s12 map-container">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <% if !@delivery.delivery_photos.blank? %>
+      <% @delivery.delivery_photos.each do |photo| %>
+          <div class="row photos">
+
+            <% if photo.status == 0 %>
+                <h5>Envío fallido <%= photo.created_at.in_time_zone("Buenos Aires").strftime("%I:%M%p")%></h5>
+            <% else %>
+                <h5>Envío exitoso <%= photo.created_at.in_time_zone("Buenos Aires").strftime("%I:%M%p")%></h5>
+            <% end %>
+            <div class="col s6">
+              <div class="card">
+                <div class="card-image">
+                  <%= image_tag photo.photo.url %>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+
+  <div class="row actions">
+    <div class="col s6 right-align  ">
+      <%= link_to :back, :class =>'waves-effect waves-light btn' do %>
+          <i class="mdi-navigation-arrow-back"></i> Volver
+      <% end %>
+    </div>
+    <div class="col s6 left-align">
+      <%= link_to edit_admin_delivery_path(@delivery) , :class=>'waves-effect waves-light btn yellow darken-2' do %>
+          <i class=" mdi-editor-mode-edit"></i> Editar
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+
+
+<script>
+
+    handler = Gmaps.build('Google');
+    handler.buildMap({
+                provider: {
+                    disableDefaultUI: true
+                },
+                internal: {
+                    id: 'map'
+                }
+            },
+            function() {
+
+
+                var directionsService = new google.maps.DirectionsService();
+                var directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setMap(handler.getMap());
+
+                var origin = new google.maps.LatLng( <%= @delivery.lat_start %>,  <%= @delivery.long_start %>);
+                var destination = new google.maps.LatLng(<%= @delivery.lat_finish %>,  <%= @delivery.long_finish %>);
+                var request = {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: google.maps.DirectionsTravelMode.WALKING
+                };
+
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        console.log(status);
+                        directionsDisplay.setDirections(response);
+
+                    }
+                });
+
+                var marker;
+
+                var doStuff = function () {
+                    if(<%= @delivery.user_id.present? %> && ((<%= @delivery.state_id %> > 1) && (<%= @delivery.state_id %> < 4)) ){
+                        $.get("/sender/get_user/<%= @delivery.user_id %>.json", function(data, status){
+                            if(data.lat && data.lon) {
+                                if(marker){
+                                    handler.removeMarker(marker);
+                                }
+                                marker = handler.addMarker(
+                                        {lat: data.lat, lng: data.lon}
+                                );
+                            }
+                        });
+                    }
+                };
+                setInterval(doStuff, 7000);
+
+
+            });
+
+</script>
+
+<script>
+    function printpage()
+    {
+        window.print()
+    }
+</script>
+
+<style>
+    @media print {
+        div.container-title, div.navbar-fixed, div.actions, a, footer, div.photos {
+            display: none;
+        }
+    }
+</style>

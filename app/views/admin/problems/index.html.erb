@@ -1,0 +1,27 @@
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-action-wallet-travel"></i> Problemas</h3>
+  </div>
+
+</div>
+
+<table class="bordered centered hoverable ">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Problema</th>
+    <th>Hace</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @problems.each do |problem| %>
+      <tr>
+        <td> <%= link_to(problem.user.first_name+" "+problem.user.last_name, admin_user_path(problem.user)) %> </td>
+        <td> <%= problem.content %> </td>
+        <td> <%= time_ago_in_words(problem.created_at) %> </td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>

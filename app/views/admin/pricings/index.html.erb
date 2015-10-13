@@ -1,0 +1,48 @@
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-action-wallet-travel"></i> Precios</h3>
+  </div>
+
+</div>
+<h5>peso volumétrico = ancho*largo*alto/5000</h5>
+<h5>peso final = Mayor entre: peso volumétrico y peso neto
+<h4>Precio: <%= @base.value %>+(<%= @kg.value %>*(peso final))+(<%= @km.value %>*(cantidad de kilómetros))</h4>
+<%= form_tag '/admin/pricings/update', :method => 'PATCH', :class => 'col s12 classic-form' do %>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= number_field_tag :base, @base.value %>
+        <%= label_tag :base , "Valor base",:class => "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= number_field_tag :km, @km.value %>
+        <%= label_tag :km , "Valor por km",:class => "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= number_field_tag :kg, @kg.value %>
+        <%= label_tag :kg , "Valor por kg",:class => "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= number_field_tag :cyclist_p, @cyclist_p.percentage %>
+        <%= label_tag :cyclist_p , "Porcentaje ciclista",:class => "active" %>
+      </div>
+    </div>
+
+    <div class="row actions">
+      <div class="col s6">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+          <i class="mdi-content-send right"></i>
+        </button>
+      </div>
+    </div>
+
+<% end %>

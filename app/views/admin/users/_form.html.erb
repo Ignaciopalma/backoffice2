@@ -1,0 +1,122 @@
+<%= form_for [:admin, @user], :html => {:multipart => true, :class => 'col s12 classic-form'} do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h3>No se pudo continuar debido a los siguientes problemas:</h3>
+
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <h5>Datos personales</h5>
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-communication-email prefix"></i>
+        <%= f.email_field :email, placeholder: 'Ingresa el correo' %>
+        <%= f.label :email, 'Correo', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-communication-email prefix"></i>
+        <%= f.text_field :rut, placeholder: 'Ingresa el RUT' %>
+        <%= f.label :rut, 'RUT', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :first_name, placeholder: 'Ingresa el nombre' %>
+        <%= f.label :first_name, 'Nombre', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :last_name, placeholder: 'Ingresa el apellido' %>
+        <%= f.label :last_name, 'Apellido', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :address, placeholder: 'Ingresa la dirección' %>
+        <%= f.label :address, 'Dirección', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :phone, placeholder: 'Ingresa el teléfono' %>
+        <%= f.label :phone, 'Teléfono', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.password_field :password, placeholder: 'Ingresa la contraseña' %>
+        <%= f.label :password, 'Contraseña', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.password_field :password_confirmation, placeholder: 'Confirma la contraseña' %>
+        <%= f.label :password_confirmation, 'Confirmación de contraseña', :class => 'active' %>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= select("user", "occupation_id", Occupation.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Ocupación"}) %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :occupation_detail, placeholder: 'Detalle de ocupación' %>
+        <%= f.label :occupation_detail, 'Detalle de ocupación', :class => 'active' %>
+      </div>
+    </div>
+
+    <h5>Datos bancarios</h5>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= select("user", "bank_id", Bank.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Banco"}) %>
+      </div>
+      <div class="input-field col s6">
+        <%= select("user", "account_type_id", AccountType.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Tipo de Cuenta"}) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-action-https  prefix"></i>
+        <%= f.text_field :account_number, placeholder: 'Ingresa el número de cuenta'   %>
+        <%= f.label :account_number, 'Número de cuenta', :class=>'active' %>
+      </div>
+    </div>
+
+    <div class="row actions">
+      <div class="col s6 right-align">
+        <%= link_to :back, :class => 'waves-effect waves-light btn' do %>
+            <i class="mdi-navigation-arrow-back"></i> Volver
+        <% end %>
+      </div>
+      <div class="col s6">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+          <i class="mdi-content-send right"></i>
+        </button>
+      </div>
+    </div>
+
+
+
+<% end %>
+
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>

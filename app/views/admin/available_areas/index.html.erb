@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-maps-pin-drop"></i> Comunas</h3>
+     <%= link_to new_admin_available_area_path , :class=>'title-link btn waves-effect waves-light' do %>
+      <i class="mdi-content-add"></i> Crear comuna
+    <% end %>
+  </div>
+</div>
+
+<table class="bordered centered hoverable ">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th class="actions" colspan="3">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @available_areas.each do |admin_available_area| %>
+      <tr>
+        <td><%= admin_available_area.name %></td>
+        <td class="actions">
+
+          <%= link_to edit_admin_available_area_path(admin_available_area), :class => 'btn-floating yellow darken-2 ' do %>
+            <i class="mdi-editor-mode-edit"></i>
+          <% end %>
+          <%= link_to admin_available_area_path(admin_available_area), :class => 'btn-floating red',  :method => :delete , :data => {:confirm => '¿Seguro que deseas eliminar esta comuna?'} do %>
+            <i class="mdi-content-clear"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

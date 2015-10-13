@@ -1,0 +1,179 @@
+<%= form_for [:sender, @delivery],  :html => {:multipart => true , :class => 'col s12 classic-form' } do |f| %>
+
+
+    <% if @delivery.errors.any? %>
+        <div id="error_explanation">
+          <h3>No se pudo continuar debido a los siguientes problemas:</h3>
+
+          <ul>
+            <% @delivery.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.text_field :address_start ,:id => 'route-start' %>
+        <%= f.label :address_start , :class => "active" %>
+      </div>
+      <div class="input-field col s6">
+        <%= f.text_field :address_finish, :id => 'route-end' %>
+        <%= f.label :address_finish, 'Direccion de destino' , :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.check_box :both_ways %>
+        <%= f.label :both_ways, "ida y vuelta" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.text_field :comuna_start , :id => 'comuna-start', :readonly => true%>
+        <%= f.label :comuna_start , 'Comuna origen', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <%= f.text_field :comuna_finish , :id => 'comuna-finish', :readonly => true %>
+        <%= f.label :comuna_finish, 'Comuna destino', :class=>'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-image-timer prefix"></i>
+        <%= f.number_field :eta , :id => 'eta', :readonly => true  %>
+        <%= f.label :eta , 'Tiempo estimado de demora (min)', :class=> 'active' %>
+      </div>
+      <div class="input-field col s6">
+
+        <i class="mdi-maps-directions prefix"></i>
+        <%= f.number_field :km, :id => 'km', :readonly => true %>
+        <%= f.label :km, 'Distancia estimada (km)', :class=> 'active' %>
+      </div>
+    </div>
+
+    <div class="row map-container">
+      <div id="map" class="col s12"></div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-action-account-circle  prefix"></i>
+        <%= f.text_field :destinatary_name %>
+        <%= f.label :destinatary_name, 'Nombre destinatario',:class=> 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-communication-quick-contacts-mail prefix"></i>
+        <%= f.text_field :destinatary_email %>
+        <%= f.label :destinatary_email , 'Correo destinatario', :class=> 'active' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s1">
+        <i class="mdi-editor-border-all prefix"></i>
+      </div>
+      <div class="input-field col s1">
+        <%= f.number_field :ancho, :step => "any" %>
+        <%= f.label :ancho, "Ancho (cm)", :class=> 'active'%>
+      </div>
+      <div class="input-field col s1">
+        <%= f.number_field :largo, :step => "any" %>
+        <%= f.label :largo, "Largo (cm)", :class=> 'active'%>
+      </div>
+      <div class="input-field col s1">
+        <%= f.number_field :alto, :step => "any" %>
+        <%= f.label :alto, "Alto (cm)", :class=> 'active'%>
+      </div>
+      <div class="input-field col s2">
+        <%= f.number_field :peso_neto, :step => "any" %>
+        <%= f.label :peso_neto, "Peso Neto (kg)", :class=> 'active'%>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-communication-quick-contacts-mail prefix"></i>
+        <% if @delivery.pay_date.present? %>
+            <%= f.text_field :pay_date, :value => @delivery.pay_date.strftime("%d/%m/%Y"), :class => 'datepicker', :name => 'pay_date'%>
+        <% else %>
+            <%= f.text_field :pay_date, :class => 'datepicker', :name => 'pay_date'%>
+        <% end %>
+        <%= f.label :pay_date , 'Fecha pago', :class=> 'active' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s2">
+        <%= f.radio_button :location_type, 'casa' , {:checked => true} %>
+        <%= f.label :location_type_casa, 'Casa', style: "display: inline;" %>
+      </div>
+      <div class="input-field col s2">
+        <%= f.radio_button :location_type, 'dept'%>
+        <%= f.label :location_type_dept, 'Departamento', style: "display: inline;" %>
+      </div>
+      <div class="input-field col s2">
+        <%= f.number_field :department_number, :value => @delivery.department_number, :class=> 'active', readonly: true%>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-action-info-outline prefix"></i>
+        <%= f.text_field :more_info, :value => @delivery.more_info %>
+        <%= f.label :more_info, "Información adicional", :class=> 'active'%>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.hidden_field :lat_start , :id => 'start-lat'%>
+      <%= f.hidden_field :long_start , :id => 'start-lng'%>
+      <%= f.hidden_field :lat_finish , :id => 'finish-lat'%>
+      <%= f.hidden_field :long_finish , :id => 'finish-lng'%>
+    </div>
+    <div class="row actions">
+      <div class="col s6 right-align">
+        <%= link_to sender_deliveries_path, :class => 'waves-effect waves-light btn' do %>
+            <i class="mdi-navigation-arrow-back"></i> Volver
+        <% end %>
+      </div>
+      <div class="col s6">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+          <i class="mdi-content-send right"></i>
+        </button>
+      </div>
+    </div>
+
+<% end %>
+
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        weekdaysShort: ['DO', 'Lun', 'Mar', 'MI', 'JU', 'BI', 'SA'],
+        today: 'Hoy',
+        clear: 'Borrar',
+        close: 'Aceptar',
+        format: 'dd/mm/yyyy',
+        formatSubmit: 'dd/mm/yyyy'
+    });
+</script>
+
+
+<script>
+    $(function() {
+        if($('#delivery_location_type_dept').is(':checked')){
+            $('#delivery_department_number').prop('readonly', false);
+        } else {
+            $('#delivery_department_number').val('');
+            $('#delivery_department_number').prop('readonly', 'readonly');
+        }
+
+    });
+
+    $('input[type=radio]').change(function dept_number(){
+        if($('#delivery_location_type_dept').is(':checked')){
+            $('#delivery_department_number').prop('readonly', false);
+        } else {
+            $('#delivery_department_number').val('');
+            $('#delivery_department_number').prop('readonly', 'readonly');
+        }
+    });
+</script>

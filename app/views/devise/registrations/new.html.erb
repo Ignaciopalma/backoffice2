@@ -1,0 +1,37 @@
+<div class="form-container z-depth-3 col s2 offset-s5">
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+        <%= devise_error_messages! %>
+
+        <div class="row">
+          <div class="col input-field s12">
+            <%= f.email_field :email, autofocus: true, placeholder:"Ingresa tu correo" %>
+            <%= f.label :email, "Correo",:class => 'active'  %>
+          </div>
+
+          <div class="col input-field s12">
+            <%= f.password_field :password, autocomplete: "off", placeholder:"Ingresa tu contraseña"  %>
+            <%= f.label :password , "Contraseña", :class => 'active'%>
+            <!-- <% if @validatable %> --	>
+                <!-- <em>(<%= @minimum_password_length %> characters minimum)</em> -->
+                <!-- <% end %> -->
+          </div>
+
+          <div class="col input-field s12">
+            <%= f.password_field :password_confirmation, autocomplete: "off" , placeholder:"Repite tu contraseña"%>
+            <%= f.label :password_confirmation ,"Repetir contraseña", :class => 'active' %>
+          </div>
+
+          <div class="col s12 actions">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Registrarse<i class="mdi-navigation-arrow-forward right"></i></button>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

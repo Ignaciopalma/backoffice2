@@ -1,0 +1,130 @@
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-action-account-child"></i> <%= @user.first_name+" "+@user.last_name %></h3>
+  </div>
+</div>
+
+<%= form_for [:admin, @user], :html => {:multipart => true, :class => 'col s12 classic-form'} do |f| %>
+    <h5>Datos personales</h5>
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-communication-email prefix"></i>
+        <%= f.email_field :email, placeholder: 'Ingresa el correo', readonly: true %>
+        <%= f.label :email, 'Correo', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-communication-email prefix"></i>
+        <%= f.text_field :rut, placeholder: 'Ingresa el RUT', readonly: true  %>
+        <%= f.label :rut, 'RUT', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :first_name, placeholder: 'Ingresa el nombre', readonly: true  %>
+        <%= f.label :first_name, 'Nombre', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :last_name, placeholder: 'Ingresa el apellido', readonly: true  %>
+        <%= f.label :last_name, 'Apellido', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :address, placeholder: 'Ingresa la dirección', readonly: true  %>
+        <%= f.label :address, 'Dirección', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :phone, placeholder: 'Ingresa el teléfono', readonly: true  %>
+        <%= f.label :phone, 'Teléfono', :class => 'active' %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= select("user", "occupation_id", Occupation.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Ocupación"}, disabled: true ) %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :occupation_detail, placeholder: 'Detalle de ocupación', readonly: true  %>
+        <%= f.label :occupation_detail, 'Detalle de ocupación', :class => 'active' %>
+      </div>
+    </div>
+
+
+
+<% end %>
+<h5>Historial de carreras</h5>
+<div class="row">
+  <div class="input-field col s8">
+    <b>Cantidad de envíos mes: </b> <%= @deliveries.length %>
+    <br/>
+    <b>Cantidad de envíos histórico: </b> <%= @total_envios %>
+  </div>
+  <div class="input-field col s2">
+    <%= select("user_delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+  </div>
+  <div class="input-field col s2">
+    <%= select("user_delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+  </div>
+
+  <script>
+      var filter = function(){
+          console.log($('#user_delivery_month').val());
+          console.log($('#user_delivery_year').val());
+          var query = updateQueryStringParameter(window.location.href, 'month', $('#user_delivery_month').val());
+          query = updateQueryStringParameter(query, 'year', $('#user_delivery_year').val());
+          window.open(query , "_self");
+      }
+
+      function updateQueryStringParameter(uri, key, value) {
+          var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+          var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+          if (uri.match(re)) {
+              return uri.replace(re, '$1' + key + "=" + value + '$2');
+          }
+          else {
+              return uri + separator + key + "=" + value;
+          }
+      }
+  </script>
+
+  <script>
+      $(document).ready(function() {
+          $('select').material_select();
+      });
+  </script>
+
+</div>
+
+<table class="bordered centered hoverable">
+  <thead>
+  <tr>
+    <th>Address inicio</th>
+    <th>Address entrega</th>
+    <th>Kms</th>
+    <th>Fecha</th>
+    <th>Costo</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @deliveries.each do |delivery| %>
+      <tr>
+        <td><%= delivery.address_start %>, <%= delivery.comuna_start %></td>
+        <td><%= delivery.address_finish %>, <%= delivery.comuna_finish %></td>
+        <td><%= delivery.km %></td>
+        <td><%= delivery.created_at.strftime("%d/%m/%Y") %></td>
+        <td>$<%= delivery.cost %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

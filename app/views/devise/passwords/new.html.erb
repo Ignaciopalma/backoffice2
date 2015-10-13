@@ -1,0 +1,29 @@
+<div class="modal-form-container z-depth-3 ">
+	<div class="form-title">
+		<h4><i class="mdi-communication-email"></i> Recuperar contraseña </h4> 
+	</div>
+	<div class="row content">
+
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			<%= devise_error_messages! %>
+			<div class="row">
+				<div class="col input-field s12">
+	                <i class="mdi-action-https prefix"></i>
+					<%= f.email_field :email, autofocus: true, placeholder:"Ingresa tu correo" %>
+					<%= f.label :email, "Correo", :class => 'active' %>
+				</div>
+
+				<div class="col input-field center s12">
+					<button class="btn waves-effect waves-light" type="submit" name="action">Recuperar <i class="mdi-navigation-arrow-forward right"></i></button>
+				</div>
+			</div>
+		<% end %>
+
+		<div class="row">
+			<div class="col s12">
+				<%= render "devise/shared/links" %>
+			</div>
+		</div>
+	</div>
+
+</div>

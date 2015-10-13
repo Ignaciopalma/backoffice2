@@ -1,0 +1,170 @@
+/*
+ *
+ * SECTIONS
+ * ------------
+ * 01. Variables
+ * 02. Main Layout
+ * 03. Forms
+ * 04. Tables
+ * 
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+*/
+
+@import "materialize/components/color";
+$primary-color: color("green", "darken-3") !default;
+$secondary-color: color("green", "darken-1") !default;
+@import "materialize";
+
+/* ***************** */
+/* 01. VARIABLES */
+/* ***************** */
+
+$container-title-height: 50px;
+$map-height: 300px;
+
+h1,h2,h3,h4,h5,h6{
+	color: $secondary-color;
+}
+
+/* ***************** */
+/* 02. MAIN LAYOUT */
+/* ***************** */
+
+/* navbar logo and icon padding */
+@media #{$medium-and-up} {
+  // styles for medium screens and larger
+  nav .brand-logo {
+    padding: 10px;
+  }
+  nav .button-collapse {
+  	padding-left: 5px;
+  }
+}
+@media #{$small-and-down} {
+  // styles for medium screens and larger
+  nav .brand-logo {
+  	padding: 5px;
+  }
+  nav .button-collapse {
+  	padding-left: 5px;
+  }
+}
+
+/* .container.main is the container that has the <% yield %> tag */
+body .container.main{
+	background-color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: $container-title-height;
+	padding-bottom: 10px;
+	position: relative;
+	min-height: 80%;
+	min-width: 1000px;
+}
+
+/* .filter-nav is the global nav with filters */
+body .container.main .filter-nav{
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	margin: 1em 0;
+}
+body .container.main .filter-nav ul li a{
+	padding:0 10px;
+	font-size: 14px;
+}
+
+/* .container-title is the container that has the title and one button link */
+body .container.main .container-title{
+	height: $container-title-height;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	right: 0;
+	transition: 0.5s all;
+    @extend .green, .darken-3;
+
+}
+
+body .container.main .container-title .wrapper .title{
+	color: white;
+	padding: 0 1em;
+	margin: 0;
+	font-size: 20px;
+	line-height: $container-title-height;
+	position: relative;
+}
+body .container.main .container-title .wrapper {
+	position: relative;
+}
+body .container.main .container-title .wrapper .title-link{
+	position: absolute !important;
+ 	right: 17px;
+  	top: 8px;
+}
+/* ***************** */
+/* 03. FORMS */
+/* ***************** */
+
+/* the classic-form is used in the new delivery view */
+form.classic-form{
+	margin: 1em 0;
+}
+form.classic-form .title{
+	margin-top:0;
+	margin-bottom: 10px;
+}
+form.classic-form .row{
+	margin:0;
+}
+form.classic-form i.prefix{
+	color: $secondary-color;
+}
+form.classic-form .row.map-container{
+	margin:10px 0;
+}
+.delivery .map-container #map, .delivery .map-container,
+form.classic-form .map-container #map, form.classic-form .map-container{
+	height: $map-height;
+	width: 100%;
+}
+
+/* ***************** */
+/* 04. TABLES */
+/* ***************** */
+
+/* the deliveries table is very filled in with data, so we try to maximize space */
+table.deliveries td{
+	padding: 5px 5px;
+}
+
+table.deliveries td.actions, table.deliveries th.actions{
+	width: 100px;
+}
+
+/* styling qr propertis in deliveries/show view */
+.qr-container{
+	text-align: center;
+}
+
+table.qr {
+	height: 200px;
+	max-height: 200px;
+	width:  200px;
+	display: inline-block;
+	margin-top: 0.5rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+table.qr td{
+	padding: 5px;
+}

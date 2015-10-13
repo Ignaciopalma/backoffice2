@@ -1,0 +1,121 @@
+<div class="container-title">
+     <div class="row wrapper">
+        <h3 class="title"><i class="mdi-editor-mode-edit"></i> Editar carrera</h3>
+    </div>
+</div>
+<%= render 'form' %>
+
+<%= javascript_tag do %>
+    handler = Gmaps.build('Google');
+    handler.buildMap({
+    provider: {
+    disableDefaultUI: true,
+    center: new google.maps.LatLng(-33.4575978, -70.6428367)
+    // pass in other Google Maps API options here
+    },
+    internal: {
+    id: 'map'
+    }
+    }
+    );
+
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(handler.getMap());
+
+    var origin = new google.maps.LatLng( <%= @delivery.lat_start %>,  <%= @delivery.long_start %>);
+    var destination = new google.maps.LatLng(<%= @delivery.lat_finish %>,  <%= @delivery.long_finish %>);
+    var request = {
+    origin: origin,
+    destination: destination,
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    console.log(handler.getMap());
+    directionsService.route(request, function(response, status) {
+    //Check if request is successful.
+    if (status == google.maps.DirectionsStatus.OK) {
+    console.log(status);
+    directionsDisplay.setDirections(response); //Display the directions result
+    }
+    });
+
+    // Create the search box and link it to the UI element.
+    var input = (document.getElementById('route-start'));
+    var input2 = (document.getElementById('route-end'));
+    var options = {
+    componentRestrictions: {country: "cl"}
+    };
+    var searchBox = new google.maps.places.Autocomplete(input,options);
+    var searchBox2 = new google.maps.places.Autocomplete(input2,options);
+    var markers;
+    // Listen for the event fired when the user selects an item from the
+    // pick list. Retrieve the matching places for that item.
+    google.maps.event.addListener(searchBox, 'place_changed', function() {
+    var place = searchBox.getPlace();
+
+    directionsDisplay.setMap(null);
+    directionsDisplay.setMap(handler.getMap());
+    var origin = "";
+    var origin = new google.maps.LatLng( place.geometry.location.A,  place.geometry.location.F);
+    var destination = new google.maps.LatLng(<%= @delivery.lat_finish %>,  <%= @delivery.long_finish %>);
+    var request = {
+    origin: origin,
+    destination: destination,
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+    //Check if request is successful.
+    if (status == google.maps.DirectionsStatus.OK) {
+    console.log(response);
+    console.log('a');
+    $('#km ').val(parseInt(response.routes[0].legs[0].distance.text.split(' ')[0]));
+    $('#eta ').val(response.routes[0].legs[0].duration.text.split(' ')[0]);
+    directionsDisplay.setDirections(response); //Display the directions result
+    }
+    });
+
+    $('#start-lat').val(place.geometry.location.A);
+    $('#start-lng').val(place.geometry.location.F);
+    $('#comuna-start').val(place.address_components[3].short_name);
+
+    });
+
+    // Listen for the event fired when the user selects an item from the
+    // pick list. Retrieve the matching places for that item.
+    google.maps.event.addListener(searchBox2, 'place_changed', function() {
+    var place = searchBox2.getPlace();
+
+    directionsDisplay.setMap(null);
+    directionsDisplay.setMap(handler.getMap());
+    var destination = "";
+    var origin = new google.maps.LatLng(<%= @delivery.lat_start %>,  <%= @delivery.long_start %>);
+    var destination = new google.maps.LatLng( place.geometry.location.A,  place.geometry.location.F);
+    var request = {
+    origin: origin,
+    destination: destination,
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+    //Check if request is successful.
+    if (status == google.maps.DirectionsStatus.OK) {
+    console.log(status);
+    $('#km ').val(parseInt(response.routes[0].legs[0].distance.text.split(' ')[0]));
+    $('#eta ').val(response.routes[0].legs[0].duration.text.split(' ')[0]);
+    directionsDisplay.setDirections(response); //Display the directions result
+    }
+    });
+
+    $('#finish-lat').val(place.geometry.location.A);
+    $('#finish-lng').val(place.geometry.location.F);
+    $('#comuna-finish').val(place.address_components[3].short_name);
+
+    });
+
+    $("form").on("keypress",
+    function (e) {
+    if (e.keyCode == 13) {
+    return false;
+    }
+    });
+
+<% end %>
