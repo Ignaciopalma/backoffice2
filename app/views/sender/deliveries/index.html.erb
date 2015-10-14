@@ -51,6 +51,8 @@
     <b>Cantidad de envíos: </b> <%= @deliveries.length %>
     <br/>
     <b>Total acumulado: </b> $<%= number_to_currency(@total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <br/>
+    <b>Distancia promedio: </b> <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
   </div>
   <div class="input-field col s2">
     <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>

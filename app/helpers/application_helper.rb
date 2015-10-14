@@ -18,6 +18,10 @@ module ApplicationHelper
     return months
   end
 
+  def sender_options
+    Sender.all.collect {|p| [ p.business_name, p.id] }
+  end
+
 
 
 end

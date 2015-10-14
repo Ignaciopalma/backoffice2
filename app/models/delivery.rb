@@ -52,32 +52,36 @@ class Delivery < ActiveRecord::Base
       peso_volumetrico = ancho*largo*alto/5000
       peso_final = (peso_neto > peso_volumetrico)? peso_neto : peso_volumetrico
 
-     # if self.both_ways
-     #   self.cost = (BasePricing.first.value+(KgPricing.first.value*peso_final)+(KmPricing.first.value*self.km).ceil)*2
-     # else
-     #   self.cost = BasePricing.first.value+(KgPricing.first.value*peso_final)+(KmPricing.first.value*self.km).ceil
-     # end
-
       if self.both_ways
-        self.cost = (BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+(KmPricing.first.value*(self.km**1.5)).ceil)/1.19 #*2
+        self.cost = (BasePricing.first.value+(KgPricing.first.value*peso_final)+(KmPricing.first.value*self.km).ceil)*2
       else
-        self.cost = (BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+(KmPricing.first.value*(self.km**1.5)).ceil)/1.19
+        self.cost = BasePricing.first.value+(KgPricing.first.value*peso_final)+(KmPricing.first.value*self.km).ceil
       end
 
+      #if self.both_ways
+      #  self.cost = (BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+(KmPricing.first.value*(self.km**1.5)).ceil)/1.19 #*2
+      #else
+      #  self.cost = (BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+(KmPricing.first.value*(self.km**1.5)).ceil)/1.19
+      #end
 
-     # self.comission = ((self.cost.to_f/1.19).floor * Pricing.first.percentage.to_f/100).floor
-     # self.vx_comission = (self.cost.to_f/1.19).floor - self.comission
-     # self.iva = (self.cost*0.19).round 
 
-      self.comission = ((self.cost.to_f).floor * Pricing.first.percentage.to_f/100).floor
-      self.vx_comission = (self.cost.to_f).floor - self.comission
-      self.iva = 1# (self.cost*0.19).round
+      self.comission = ((self.cost.to_f/1.19).floor * Pricing.first.percentage.to_f/100).floor
+      self.vx_comission = (self.cost.to_f/1.19).round - self.comission
+      self.iva = (self.cost/1.19 * 0.19).round
+
+      #self.comission = ((self.cost.to_f).floor * Pricing.first.percentage.to_f/100).floor
+      #self.vx_comission = (self.cost.to_f).floor - self.comission
+      #self.iva = 1# (self.cost*0.19).round
     end
   end
 
   def fix_comission
-   # self.comission = ((self.cost.to_f/1.19).floor * Pricing.first.percentage.to_f/100).floor
-   self.comission = ((self.cost.to_f).floor * Pricing.first.percentage.to_f/100).floor
+    # self.comission = ((self.cost.to_f/1.19).floor * Pricing.first.percentage.to_f/100).floor
+    # self.comission = ((self.cost.to_f).floor * Pricing.first.percentage.to_f/100).floor
+
+    self.comission = ((self.cost.to_f/1.19).floor * Pricing.first.percentage.to_f/100).floor
+    self.vx_comission = (self.cost.to_f/1.19).round - self.comission
+    self.iva = (self.cost/1.19 * 0.19).round
   end
   #precio base, base peso, base km
   #% 90 - 10

@@ -50,10 +50,17 @@ class Sender::DeliveriesController < ApplicationController
       end
     end
 
+    @distancia = 0.0
     @deliveries.each do |delivery|
       @total = @total + delivery.cost
+      @distancia += delivery.km.to_f
     end
 
+    if @deliveries.length == 0
+      @distancia = 0
+    else
+      @distancia /= @deliveries.length
+    end
   end
 
   def show
@@ -64,7 +71,7 @@ class Sender::DeliveriesController < ApplicationController
 
   def new
     @delivery = Delivery.new
-    @delivery.pay_date = calculate_pay_date(current_sender.pay_day, nil)
+    @delivery.pay_date = calculate_pay_date(current_sender.pay_day)
   end
 
   def edit
@@ -171,7 +178,7 @@ class Sender::DeliveriesController < ApplicationController
       @delivery.sender_pay_state_id = 1
       @delivery.confirmed = 0
       @delivery.user_id = nil
-      @delivery.pay_date = calculate_pay_date(current_sender.pay_day, @delivery_clone.pay_date)
+      @delivery.pay_date = calculate_pay_date(current_sender.pay_day)
       @delivery.cost = 0
       @delivery.iva = 0
       @delivery.vx_comission = 0
