@@ -234,6 +234,7 @@ class Api::DeliveriesController < Api::ApiController
       if success
         @delivery.state_id = 4
         if @delivery.save
+          AppMailer.confirm(@delivery).deliver_later
           format.json { render :json => {:msg => "El envío ha sido finalizado y marcado como exitoso"},  status: :ok}
         else
           format.json { render :json => {:msg => "Ocurrió un error, intente nuevamente"},  status: :unprocessable_entity}
