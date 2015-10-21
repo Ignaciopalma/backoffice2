@@ -30,5 +30,6 @@ json.extract! @delivery, :id,
               :department_number,
               :more_info,
               :both_ways,
-              :location_type
+              :location_type,
+							:sender_name
 json.url api_delivery_url(@delivery, format: :json)

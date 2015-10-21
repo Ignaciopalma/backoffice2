@@ -7,7 +7,7 @@ class Delivery < ActiveRecord::Base
   belongs_to :sender
   belongs_to :user
   accepts_nested_attributes_for :delivery_photos
-
+  attr_accessor :sender_name
   validates :address_start, :address_finish , :comuna_start, :comuna_finish, :eta, :km, :destinatary_name, :destinatary_email, :ancho, :largo, :alto, :peso_neto, :sender_id,  :lat_start, :long_start, :lat_finish, :long_finish, presence: true
 
   validate :comunas_val

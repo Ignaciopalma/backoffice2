@@ -1,6 +1,7 @@
 class Api::SessionController < Api::ApiController
   before_action :authenticate, only: [:destroy]
 
+
   respond_to :json
 
   def create
@@ -17,7 +18,7 @@ class Api::SessionController < Api::ApiController
           end
 
         else
-          format.json { render :json =>  {:msg => "Usuario o contraseña incorrecto"}, status: :unprocessable_entity }
+          format.json { render :json =>  {:msg => "Usuario o contraseña incorrecto"}, status: :unauthorized }
         end
       else
         format.json { render :json =>  {:msg => "No se reciben las credenciales"}, status: :unprocessable_entity }
@@ -145,6 +146,58 @@ class Api::SessionController < Api::ApiController
       end
     end
   end
+
+  def recover_password
+    user = User.find_by_email(params[:email]) rescue nil
+    respond_to do |format|
+      if user.present?
+        #generar token
+        user.recover_password_token = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+        user.save
+
+        #enviar mail
+        AppMailer.recover_password(user).deliver_later
+
+        #encolar el borrado
+        ::Delayed::Job.enqueue(::RecoverPasswordJob.new(params[:email]), {:priority => 100, :run_at => 60.minutes.from_now})
+
+        format.json { render :json => {:msg => "Se ha enviado un correo electrónico con las instrucciones"},  status: :ok}
+      else
+        format.json { render :json => {:msg => "No se encontró el usuario asiciado al correo electrónico"},  status: :unprocessable_entity}
+      end
+    end
+  end
+
+  def recover
+
+  end
+
+  def do_recover
+
+    if params[:pass1] != params[:pass2] or params[:token].nil? or params[:token] == nil or params[:pass1] == nil or params[:pass2] == nil
+      flash[:notice] = "Ocurrió un error"
+      redirect_to "/api/recover/"+params[:token]
+      return
+    end
+
+    user = User.find_by_recover_password_token(params[:token])
+
+    if user.blank?
+      flash[:notice] = "Ocurrió un error"
+      redirect_to "/api/recover/"+params[:token]
+      return
+    else
+      flash[:notice] = "Ha cambiado su contraseña exitosamente"
+      user.password = params[:pass1]
+      user.recover_password_token = nil
+      user.save
+
+      redirect_to "/api/recover/"+params[:token]
+      return
+
+    end
+  end
+
 
   private
 

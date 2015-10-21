@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813141424) do
+ActiveRecord::Schema.define(version: 20151020215200) do
 
   create_table "account_types", force: :cascade do |t|
     t.string   "name"
@@ -240,11 +240,12 @@ ActiveRecord::Schema.define(version: 20150813141424) do
     t.string   "account_number"
     t.integer  "occupation_id"
     t.string   "occupation_detail"
-    t.integer  "active",            default: 0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "active",                 default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.decimal  "lon"
     t.decimal  "lat"
+    t.string   "recover_password_token"
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|

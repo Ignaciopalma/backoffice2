@@ -25,5 +25,9 @@ class AppMailer < ApplicationMailer
     mail(to: user.email, subject: '¡Tu cuenta ha sido desactivada!')
   end
 
+  def recover_password(user)
+    @user = user
+    mail(to: user.email, subject: 'Recupera tu contraseña')
+  end
 
 end

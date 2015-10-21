@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     post   'invite_friend' => 'session#invite_friend'
     post   'create_problem' => 'session#create_problem'
     post   'update_position' => 'session#update_position'
+    post   'recover_password' => 'session#recover_password'
+    get    'recover/:token' => "session#recover", format: 'html'
+    post    'recover/:token' => "session#do_recover", format: 'html'
 
   end
 

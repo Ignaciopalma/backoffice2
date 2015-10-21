@@ -4,8 +4,11 @@ class Sender < ActiveRecord::Base
   devise :database_authenticatable, :recoverable,
           :rememberable, :trackable, :validatable
 
+
+
   belongs_to :area
   belongs_to :city
+  has_many :deliveries
 
   validates_inclusion_of :pay_day, :in => 1..31
 end
