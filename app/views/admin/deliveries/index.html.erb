@@ -63,7 +63,7 @@
     <b>Cantidad de envíos: </b> <%= @deliveries.length %>
     <br/>
     <b>Total Neto</b> $<%= number_to_currency(@costo_total/1.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>+
-    <b>IVA</b> $<%= number_to_currency(@costo_total/1.19*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>=
+    <b>IVA</b> $<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>=
     <b>Total</b> $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
     <br/>
     <b>Monto acumulado Velo Express: </b> $<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
