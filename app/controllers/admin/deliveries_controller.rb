@@ -177,6 +177,6 @@ class Admin::DeliveriesController < ApplicationController
 	end
 
 	def delivery_params
-		params.require(:delivery).permit(:id, :sender_id, :pay,:cyclist_id, :pay_date, :eta, :km, :state, :pay_state, :comuna_start, :comuna_finish, :lat_start, :long_start, :lat_finish, :long_finish, :photo_id, :address_start, :address_finish, :comission, :destinatary_name, :destinatary_email, :ancho, :largo, :alto, :peso_neto, :more_info, :department_number, :both_ways, :location_type, :delivery_photos_attributes => [:photo, :status])
+		params.require(:delivery).permit(:id, :sender_id, :pay,:cyclist_id, :service_type, :pay_date, :eta, :km, :state, :pay_state, :comuna_start, :comuna_finish, :lat_start, :long_start, :lat_finish, :long_finish, :photo_id, :address_start, :address_finish, :comission, :destinatary_name, :destinatary_email, :ancho, :largo, :alto, :peso_neto, :more_info, :department_number, :both_ways, :location_type, :delivery_photos_attributes => [:photo, :status])
 	end
 end

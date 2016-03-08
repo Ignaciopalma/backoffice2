@@ -238,7 +238,7 @@ class Sender::DeliveriesController < ApplicationController
   end
 
   def delivery_params
-    params.require(:delivery).permit(:id, :eta, :km, :state_id, :pay_state_id, :pay_date, :comuna_start, :comuna_finish, :lat_start, :long_start, :lat_finish, :long_finish, :photo_id, :address_start, :address_finish, :destinatary_name, :destinatary_email, :ancho, :largo, :alto, :peso_neto, :more_info, :department_number, :both_ways,:location_type, :delivery_photos_attributes => [:photo, :status])
+    params.require(:delivery).permit(:id, :service_type, :eta, :km, :state_id, :pay_state_id, :pay_date, :comuna_start, :comuna_finish, :lat_start, :long_start, :lat_finish, :long_finish, :photo_id, :address_start, :address_finish, :destinatary_name, :destinatary_email, :ancho, :largo, :alto, :peso_neto, :more_info, :department_number, :both_ways,:location_type, :delivery_photos_attributes => [:photo, :status])
   end
 
   def sender_params

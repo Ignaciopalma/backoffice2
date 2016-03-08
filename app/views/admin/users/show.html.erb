@@ -98,8 +98,10 @@
 <div class="row">
   <div class="input-field col s8">
     <b>Cantidad de envíos mes: </b> <%= @deliveries.length %>
-    <br/>
+    <br/>Total
     <b>Cantidad de envíos histórico: </b> <%= @total_envios %>
+    <br/>
+    <b>Total Comisión: </b> <%= @total_comission %>
   </div>
   <div class="input-field col s2">
     <%= select("user_delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>

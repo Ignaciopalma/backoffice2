@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020215200) do
+ActiveRecord::Schema.define(version: 20151214081538) do
 
   create_table "account_types", force: :cascade do |t|
     t.string   "name"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20151020215200) do
     t.integer  "try",                 default: 1
     t.integer  "iva",                 default: 0
     t.integer  "vx_comission",        default: 0
+    t.string   "service_type"
   end
 
   add_index "deliveries", ["sender_id"], name: "index_deliveries_on_sender_id"

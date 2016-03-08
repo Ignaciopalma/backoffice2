@@ -121,12 +121,31 @@
       </div>
     </div>
 
+    <div class="row">
+    <div class="input-field col s6">
+        
+      </div>
+      <div class="input-field col s3">
+        <%= f.radio_button :service_type, 'basic' , {:checked => true} %>
+        <%= f.label :service_type_basic, 'Basic', style: "display: inline;" %>
+      </div>
+      <div class="input-field col s3">
+        <%= f.radio_button :service_type, 'express'%>
+        <%= f.label :service_type_express, 'Express', style: "display: inline;" %>
+      </div>
+    </div>
+	
+
     <div class="field">
       <%= f.hidden_field :lat_start , :id => 'start-lat'%>
       <%= f.hidden_field :long_start , :id => 'start-lng'%>
       <%= f.hidden_field :lat_finish , :id => 'finish-lat'%>
       <%= f.hidden_field :long_finish , :id => 'finish-lng'%>
     </div>
+   <br>
+   <br>
+   <br>
+
     <div class="row actions">
       <div class="col s6 right-align">
         <%= link_to sender_deliveries_path, :class => 'waves-effect waves-light btn' do %>

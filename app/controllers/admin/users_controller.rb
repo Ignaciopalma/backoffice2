@@ -44,6 +44,10 @@ class Admin::UsersController < ActionController::Base
         @deliveries << delivery if (delivery.created_at.month.to_i == @month.to_i and delivery.created_at.year.to_i == @year.to_i)
       end
     end
+    @total_comission = 0
+    @deliveries.each do |delivery|
+	@total_comission += delivery.comission
+    end
   end
 
   def new

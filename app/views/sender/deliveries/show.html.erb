@@ -40,6 +40,11 @@
           <% if @delivery.department_number.present?%>
               <li>Departamento: <%= @delivery.department_number %></li>
           <% end %>
+          <% if @delivery.service_type == "express"%>
+            <li>Servicio: Express</li>
+          <% else %>
+            <li>Servicio: Básico</li>
+          <% end %> 
           <% if @delivery.more_info.present?%>
               <li>Información adicional: <%= @delivery.more_info  %></li>
           <% end %>

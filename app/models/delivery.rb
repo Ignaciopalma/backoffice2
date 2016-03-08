@@ -52,11 +52,44 @@ class Delivery < ActiveRecord::Base
       peso_volumetrico = ancho*largo*alto/5000
       peso_final = (peso_neto > peso_volumetrico)? peso_neto : peso_volumetrico
 
-      if self.both_ways
-        self.cost = ((BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5).ceil)/1.19
+      if self.service_type == "basic"
+        base_pricing = BasePricing.first.value
+        if self.both_ways
+          self.cost = (((base_pricing+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5)).ceil)/1.19)*2
+        else
+          self.cost = ((base_pricing+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5)).ceil)/1.19
+        end
+      elsif self.service_type == "express"
+        base_pricing = 4400
+        self.cost = ((base_pricing+(50*(peso_final**1.6))+50*(self.km**1.9)).ceil)/1.19
+        if self.both_ways
+          self.cost = self.cost * 2
+        end
       else
-        self.cost = ((BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5).ceil)/1.19
+        base_pricing = 4000
       end
+
+     # if self.service_type == "basic"
+      #  base_pricing = BasePricing.first.value
+     # elsif self.service_type == "express"
+     #   base_pricing = 2850
+     # else
+     #   base_pricing = 4000
+     # end
+
+     # if self.both_ways
+     #   self.cost = (((base_pricing+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5)).ceil)/1.19)*2
+     # else
+     #   self.cost = ((base_pricing+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5)).ceil)/1.19
+     # end
+
+     
+
+     # if self.both_ways
+     #   self.cost = (((BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5)).ceil)/1.19)*2
+     # else
+     #   self.cost = ((BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+KmPricing.first.value*(self.km**1.5)).ceil)/1.19
+     # end
 
       #if self.both_ways
       #  self.cost = (BasePricing.first.value+(KgPricing.first.value*(peso_final**1.5))+(KmPricing.first.value*(self.km**1.5)).ceil)/1.19 #*2
