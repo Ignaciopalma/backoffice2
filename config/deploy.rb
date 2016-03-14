@@ -10,7 +10,7 @@ set :deploy_via, :copy
 
 set :stage, :production
 set :branch, 'master'
-set :deploy_to, '/home/veloexpress/apps/veloexpress-api'
+set :deploy_to, '/home/veloexpress/apps/veloexpress-2016'
 
 set :linked_files, %w{config/database.yml .env config/secrets.yml}
 
