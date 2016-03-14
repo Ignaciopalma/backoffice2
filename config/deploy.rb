@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'veloexpress-api'
+set :application, 'veloexpress'
 set :repo_url, 'git@bitbucket.org:felgutier/veloexpress-2016.git'
 set :scm, :git 
 
