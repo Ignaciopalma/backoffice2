@@ -8,9 +8,11 @@ set :scm, :git
 
 set :deploy_via, :copy
 
-set :stage, :production
+set :stages, ["staging", "production"]
+set :default_stage, "staging"
+#set :stage, :production
 set :branch, 'master'
-set :deploy_to, '/home/veloexpress/apps/veloexpress'
+#set :deploy_to, '/home/veloexpress/apps/veloexpress'
 
 set :linked_files, %w{config/database.yml .env config/secrets.yml}
 
