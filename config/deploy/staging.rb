@@ -1,3 +1,10 @@
+set :stage, :staging
+set :rails_env, :staging
+set :deploy_to, '/home/ubuntu/apps/veloexpress'
+
+server '52.36.195.102', user: 'ubuntu', roles: %w{web app db}, primary: true
+
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
