@@ -2,7 +2,7 @@ set :stage, :staging
 set :rails_env, :staging
 set :deploy_to, '/home/ubuntu/apps/veloexpress'
 
-server '2.35.97.54', user: 'ubuntu', roles: %w{web app db}, primary: true
+server '52.35.97.54', user: 'ubuntu', roles: %w{web app db}, primary: true
 
 
 # server-based syntax
