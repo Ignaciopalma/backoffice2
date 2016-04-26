@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214081538) do
+ActiveRecord::Schema.define(version: 20160426004835) do
 
   create_table "account_types", force: :cascade do |t|
     t.string   "name"
@@ -216,6 +216,7 @@ ActiveRecord::Schema.define(version: 20151214081538) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pay_day",                default: 0
+    t.integer  "sender_type"
   end
 
   add_index "senders", ["email"], name: "index_senders_on_email", unique: true
