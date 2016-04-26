@@ -50,8 +50,12 @@ group :development, :test do
   gem 'capistrano-rvm'
   gem 'capistrano-passenger'
   gem 'capistrano-ssh-doctor'
+
+  gem 'dotenv-rails'
 end
 
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'materialize-sass'
 gem 'rqrcode', :git => "git://github.com/whomwah/rqrcode.git"

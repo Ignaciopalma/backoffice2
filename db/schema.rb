@@ -136,6 +136,16 @@ ActiveRecord::Schema.define(version: 20160426004835) do
     t.datetime "photo_updated_at"
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["sender_id"], name: "index_identities_on_sender_id"
+
   create_table "kg_pricings", force: :cascade do |t|
     t.integer  "value"
     t.datetime "created_at", null: false
