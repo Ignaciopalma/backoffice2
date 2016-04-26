@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   end
 
+  devise_for :senders, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   devise_for :senders, :path => "sender"
   devise_for :admins, :path => "admin"
 
