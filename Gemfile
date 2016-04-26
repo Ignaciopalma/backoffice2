@@ -56,6 +56,7 @@ end
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 gem 'materialize-sass'
 gem 'rqrcode', :git => "git://github.com/whomwah/rqrcode.git"
