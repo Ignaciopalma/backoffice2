@@ -1,4 +1,4 @@
-class RegistrationSendersController < Devise::RegistrationsController
+class Sender::RegistrationSendersController < Devise::RegistrationsController
 
   protected
     def sign_up_params
