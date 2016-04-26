@@ -11,7 +11,7 @@ class Sender < ActiveRecord::Base
   has_many :deliveries
   has_many :identities, dependent: :destroy
 
-  validates_inclusion_of :pay_day, :in => 1..31
+  #validates_inclusion_of :pay_day, :in => 1..31
 
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -38,17 +38,17 @@ class Sender < ActiveRecord::Base
       # Create the sender if it's a new registration
       if sender.nil?
         if identity.provider == "twitter"
-            sender = sender.new(
-              name: auth.info.name,
+            sender = Sender.new(
+              contact_name: auth.info.name,
               email: email ? email : "update@me.com",
-              remote_avatar_url: auth.info.image,
+              #remote_avatar_url: auth.info.image,
               password: Devise.friendly_token[0,20]
             )
           else
-            sender = sender.new(
-              name: auth.info.name,
+            sender = Sender.new(
+              contact_name: auth.info.name,
               email: email ? email : "update@me.com",
-              remote_avatar_url: auth.info.image,
+              #remote_avatar_url: auth.info.image,
               password: Devise.friendly_token[0,20]
             )
           end

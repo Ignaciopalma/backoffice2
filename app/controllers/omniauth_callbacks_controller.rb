@@ -2,7 +2,7 @@
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
-        @sender = sender.find_for_oauth(env["omniauth.auth"], current_sender)
+        @sender = Sender.find_for_oauth(env["omniauth.auth"], current_sender)
 
         if @sender.persisted?
           sign_in_and_redirect @sender, event: :authentication
