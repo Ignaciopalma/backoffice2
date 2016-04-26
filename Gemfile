@@ -54,6 +54,8 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'materialize-sass'
 gem 'rqrcode', :git => "git://github.com/whomwah/rqrcode.git"
