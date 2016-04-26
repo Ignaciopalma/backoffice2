@@ -38,8 +38,7 @@ Rails.application.routes.draw do
 
   end
 
-  devise_for :senders, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  devise_for :senders, :path => "sender"
+  devise_for :senders, :path => "sender", controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   devise_for :admins, :path => "admin"
 
   namespace :sender, path: 'sender' do
