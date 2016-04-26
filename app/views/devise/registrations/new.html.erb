@@ -5,22 +5,32 @@
         <%= devise_error_messages! %>
 
         <div class="row">
-          <div class="col input-field s12">
-            <%= f.email_field :email, autofocus: true, placeholder:"Ingresa tu correo" %>
-            <%= f.label :email, "Correo",:class => 'active'  %>
+          <div class="row">
+            <div class="col input-field s12">
+              <%= f.email_field :email, autofocus: true, placeholder:"Ingresa tu correo" %>
+              <%= f.label :email, "Correo",:class => 'active'  %>
+            </div>
           </div>
 
-          <div class="col input-field s12">
-            <%= f.password_field :password, autocomplete: "off", placeholder:"Ingresa tu contraseña"  %>
-            <%= f.label :password , "Contraseña", :class => 'active'%>
-            <!-- <% if @validatable %> --	>
-                <!-- <em>(<%= @minimum_password_length %> characters minimum)</em> -->
-                <!-- <% end %> -->
+          <div class="row">
+            <div class="col input-field s12">
+              <%= f.password_field :password, autocomplete: "off", placeholder:"Ingresa tu contraseña (Min: 8)"  %>
+              <%= f.label :password , "Contraseña", :class => 'active'%>
+            </div>
           </div>
 
-          <div class="col input-field s12">
-            <%= f.password_field :password_confirmation, autocomplete: "off" , placeholder:"Repite tu contraseña"%>
-            <%= f.label :password_confirmation ,"Repetir contraseña", :class => 'active' %>
+          <div class="row">
+            <div class="col input-field s12">
+              <%= f.password_field :password_confirmation, autocomplete: "off" , placeholder:"Repite tu contraseña"%>
+              <%= f.label :password_confirmation ,"Repetir contraseña", :class => 'active' %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.label :sender_type, :class => 'active' %>
+              <%= select(:sender, :sender_type, Sender.sender_types.map {|type| [I18n.t("activerecord.attributes.sender.#{type.first}"), type.first] }) %>
+            </div>
           </div>
 
           <div class="col s12 actions">
@@ -35,3 +45,9 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+      $('select').material_select();
+  });
+</script>

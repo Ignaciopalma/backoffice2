@@ -1,21 +1,25 @@
 ---
 es:
   activerecord:
-      attributes:
-        delivery:
-          comuna_start: Comuna inicio
-          comuna_finish: Comuna entrega
-          address_start: Dirección inicio
-          address_finish: Dirección entrega
-          destinatary_name: Nombre destinatario
-          destinatary_email: Correo electrónico destinatario
-          eta: Tiempo estimado
-          lat_start: Latitud inicio
-          long_start: Longitud inicio
-          lat_finish: Longitud destino
-          long_finish: Longitud destino
-          km: Kilometros
-          department_number: Número de departamento
+    attributes:
+      delivery:
+        comuna_start: Comuna inicio
+        comuna_finish: Comuna entrega
+        address_start: Dirección inicio
+        address_finish: Dirección entrega
+        destinatary_name: Nombre destinatario
+        destinatary_email: Correo electrónico destinatario
+        eta: Tiempo estimado
+        lat_start: Latitud inicio
+        long_start: Longitud inicio
+        lat_finish: Longitud destino
+        long_finish: Longitud destino
+        km: Kilometros
+        department_number: Número de departamento
+      sender:
+        sender_type: Tipo
+        person: Persona
+        company: Empresa
   date:
     abbr_day_names:
     - dom
