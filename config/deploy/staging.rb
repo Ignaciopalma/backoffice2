@@ -1,6 +1,6 @@
 set :stage, :production	
 set :rails_env, :production
-set :deploy_to, '/home/ubuntu/apps/veloexpress'
+set :deploy_to, '/home/ubuntu/apps/veloexpress/current/public'
 set :branch, 'staging'
 
 server '52.35.248.254', user: 'ubuntu', roles: %w{web app db}, primary: true
