@@ -3,7 +3,7 @@ class Sender < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   devise :database_authenticatable, :recoverable, :registerable,
-          :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
+          :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   enum sender_type: [:company, :person]
 
@@ -42,7 +42,7 @@ class Sender < ActiveRecord::Base
         if identity.provider == "twitter"
             sender = Sender.new(
               contact_name: auth.info.name,
-              email: email ? email : "update@me.com",
+              #email: email ? email : "update@me.com",
               #remote_avatar_url: auth.info.image,
               password: Devise.friendly_token[0,20]
             )
