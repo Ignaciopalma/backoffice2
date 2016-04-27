@@ -10,8 +10,8 @@ set :deploy_via, :copy
 
 set :stages, ["staging", "production"]
 set :default_stage, "staging"
+set :passenger_restart_with_sudo, true
 #set :stage, :production
-set :branch, 'master'
 #set :deploy_to, '/home/veloexpress/apps/veloexpress'
 
 set :linked_files, %w{config/database.yml .env config/secrets.yml}
