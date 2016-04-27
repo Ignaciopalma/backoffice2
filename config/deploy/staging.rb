@@ -1,6 +1,6 @@
 set :stage, :staging
 set :rails_env, :staging
-set :deploy_to, '/home/ubuntu/apps/veloexpress'
+set :deploy_to, '/home/ubuntu/#{fetch(:application)'
 
 
 server '52.35.248.254', user: 'ubuntu', roles: %w{web app db}, primary: true
