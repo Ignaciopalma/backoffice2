@@ -60,15 +60,15 @@
 
 
 <div class="infotable">
-    <div class="infotable-nav">
-      <a class='dropdown-button btn verde active' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a>
-      
-      <%= link_to "Nuevo Envio", "#modal2", class: "btn verde waves-effect waves-light btn modal-trigger"  %> 
-		<%= link_to "REVISAR", "#", class: "btn verde" %>
-      <%= link_to "RESEÑAS", "#", class: "btn verde" %>
-      <%= link_to "FAQ", "#", class: "btn verde" %>
-
-      <ul id='dropdown1' class='dropdown-content'>
+    <ul class="infotable-nav">
+      <li><a class='' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a></li>
+	  <li><%= link_to "Nuevo Envio", "#modal2", class: "btn verde waves-effect waves-light btn modal-trigger"  %> </li>
+      <li><%= link_to "REVISAR", "#", class: "btn verde" %></li>
+	  <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
+	  <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
+    </ul>
+	
+	   <!-- <ul id='dropdown1' class='dropdown-content'>
         <% if params[:state].blank? && params[:confirmed].blank? && params[:pay].blank? && params[:sender_pay].blank?%>
             <li><%= link_to "Todos", admin_deliveries_path() %></li>
         <% else %>
@@ -113,20 +113,25 @@
         <% else %>
             <li><%= link_to "Pagados (Ciclista)", admin_deliveries_path(pay: 2) %> </li>
         <% end %>
-      </ul>
-    </div>
+      </ul> -->
 
-    <div class="row">
-		<h3 class="col s6">Welcome amigo!</h3>
+    <div class="infotable-inner">
 		
-		<div class="col s6">
-		  <div class="input-field col s4 m4 l4">
+		<div class="callout">
+			<h3>Welcome amigo!</h3>
+		</div>
+			
+		<div class="infotable-filters">
+		  <div class="input-field">
 			<%= select("delivery", "sender", sender_options, {include_blank: "Todos", selected: @sender}, :onchange => 'filter();') %>
 		  </div>
-		  <div class="input-field col s4 m4 l4">
+		  <div class="input-field">
+ 			&nbsp;
+		  </div>
+		  <div class="input-field">
 			<%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
 		  </div>
-		  <div class="input-field col s2 m2 l2">
+		  <div class="input-field">
 			<%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
 		  </div>
 		</div>
