@@ -6,15 +6,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="green darken-2">
+<body>
 
 
-	<div class="row logo">
-		<div class="center-align center">
-			<%= image_tag("logo.png", :width => 300) %>
-		</div>
-	</div>
-	<div class="row main-content">
+	<div class="main-content">
 		<%= yield %>
 	</div>
 

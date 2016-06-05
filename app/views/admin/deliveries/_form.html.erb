@@ -1,4 +1,4 @@
-<%= form_for [:admin, @delivery],  :html => {:multipart => true , :class => 'col s12 classic-form' } do |f| %>
+<%= form_for [:admin, @delivery], url: {controller: "deliveries", action: "create"}, :html => {:multipart => true , :class => 'col s12 classic-form' } do |f| %>
 
 
     <% if @delivery.errors.any? %>

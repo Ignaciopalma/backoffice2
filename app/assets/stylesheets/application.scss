@@ -23,13 +23,67 @@
 /* 01. VARIABLES */
 /* ***************** */
 
-@import "materialize/components/color";
-$primary-color: color("green", "darken-3") !default;
-$secondary-color: color("green", "darken-1") !default;
+
 @import "materialize";
 /* ***************** */
 /* 02. MAIN LAYOUT */
 /* ***************** */
+@import 'bourbon';
+@import 'neat';	
+
+$primary-font: 'LaskiSlab-Regular', 'Georgia', 'Times', serif;
+$secondary-font: 'BlocC', 'Impact', 'Arial Black', sans-serif;
+$titles-font: 'LaskiSlab-ExtraLight', 'Georgia', 'Times', serif;
+$negritas-font: 'LaskiSlab-Bold', 'Georgia', 'Times', serif;
+$mobile: new-breakpoint(max-width 767px 4);
+$velo-negro: #171717;
+$velo-gris: #dcdee3;
+
+@font-face {
+  font-family: 'BlocC';
+  src: url('pt-bloc-cyrillic.eot'); /* IE9 Compat Modes */
+  src: url('pt-bloc-cyrillic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('pt-bloc-cyrillic.woff2') format('woff2'), /* Modern Browsers */
+    url('pt-bloc-cyrillic.woff') format('woff'), /* Modern Browsers */
+    url('pt-bloc-cyrillic.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('pt-bloc-cyrillic.svg') format('svg'); /* Legacy iOS */  weight: normal;
+  style: normal;
+}
+
+@font-face {
+  font-family: 'LaskiSlab-Regular';
+  src: url('LaskiSlab-Regular.eot'); /* IE9 Compat Modes */
+  src: url('LaskiSlab-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('LaskiSlab-Regular.woff2') format('woff2'), /* Modern Browsers */
+    url('LaskiSlab-Regular.woff') format('woff'), /* Modern Browsers */
+    url('LaskiSlab-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('LaskiSlab-Regular.svg') format('svg'); /* Legacy iOS */  weight: 400;
+  style: normal;
+}
+
+@font-face {
+  font-family: 'LaskiSlab-ExtraLight';
+  src: url('LaskiSlab-ExtraLight.eot'); /* IE9 Compat Modes */
+  src: url('LaskiSlab-ExtraLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('LaskiSlab-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
+    url('LaskiSlab-ExtraLight.woff') format('woff'), /* Modern Browsers */
+    url('LaskiSlab-ExtraLight.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('LaskiSlab-ExtraLight.svg') format('svg'); /* Legacy iOS */  weight: 200;
+  style: normal;
+}
+
+@font-face {
+  font-family: 'LaskiSlab-Bold';
+  src: url('LaskiSlab-Bold.eot'); /* IE9 Compat Modes */
+  src: url('LaskiSlab-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('LaskiSlab-Bold.woff2') format('woff2'), /* Modern Browsers */
+    url('LaskiSlab-Bold.woff') format('woff'), /* Modern Browsers */
+    url('LaskiSlab-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('LaskiSlab-Bold.svg') format('svg'); /* Legacy iOS */  weight: 600;
+  style: normal;
+}
+
+
 
 /* main-content is the container that has the <% yield %> tag */
 .main-content .modal-form-container{
@@ -37,7 +91,6 @@ $secondary-color: color("green", "darken-1") !default;
 	width: 400px;
 	margin: 0 auto;
 	padding: 0;
-	background-color: white;
 }
 
 /* logo */
@@ -48,7 +101,7 @@ $secondary-color: color("green", "darken-1") !default;
 
 /* .modal-form-container title styling */
 .main-content .modal-form-container .form-title{
-	background-color: $secondary-color;
+	background-color: #0E3C0E;
 	height: 45px;
 }
 
@@ -66,6 +119,9 @@ $secondary-color: color("green", "darken-1") !default;
 .main-content .modal-form-container .content .checkbox-padding {
 	padding-left: 53px !important;
 }
+
+
+
 
 
 

@@ -8,57 +8,53 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body class="grey lighten-4">
-<div class="navbar-fixed ">
-  <nav class="green darken-4">
-    <div class="nav-wrapper">
+<body>
+<nav>
+  <div class="nav-wrapper">
+    <% if admin_signed_in? %>
+        <a href="/admin/deliveries" class="brand-logo"></a>
+    <% elsif sender_signed_in? %>
+        <a href="/sender/deliveries" class="brand-logo"></a>
+    <% end %>
+    <%= link_to image_tag("https://s3-us-west-2.amazonaws.com/velo-web/images/logotipo-veloexpress.svg"), root_path, class: "main-anchor" %>
+
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    <ul class="right hide-on-med-and-down">
+
       <% if admin_signed_in? %>
-          <a href="/admin/deliveries" class="brand-logo"></a>
-      <% elsif sender_signed_in? %>
-          <a href="/sender/deliveries" class="brand-logo"></a>
-      <% end %>
-      <%= image_tag("logo.png", :width => 300) %>
-
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-      <ul class="right hide-on-med-and-down">
-
-        <% if admin_signed_in? %>
-            <li>
-              <%= link_to  admin_users_path do %>
-                  <i class="mdi-action-account-child left"></i> Usuarios
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_senders_path do  %>
-                  <i class="mdi-action-wallet-travel left"></i> Empresas
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_deliveries_path do %>
-                  <i class="mdi-maps-directions-bike left"></i> Entregas
-              <% end %>
-            </li>
-        <% elsif sender_signed_in? %>
-            <li>
-              <a href="/sender/deliveries">
-                <i class="mdi-maps-directions-bike left"></i> Entregas
-              </a>
-            </li>
-        <% end %>
-        <li>
-          <a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="user-dropdown">
-            <i class="mdi-action-account-circle left"></i>
-            <% if sender_signed_in? %>
-                <%= current_sender.email %>
-            <% elsif admin_signed_in? %>
-                <%= current_admin.email %>
+          <li>
+            <%= link_to "Usuarios", admin_users_path %>
+          </li>
+          <li>
+            <%= link_to admin_senders_path do  %>
+                <i class="mdi-action-wallet-travel left"></i> Empresas
             <% end %>
-            <i class="mdi-navigation-arrow-drop-down right"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+          </li>
+          <li>
+            <%= link_to admin_deliveries_path do %>
+                <i class="mdi-maps-directions-bike left"></i> Entregas
+            <% end %>
+          </li>
+      <% elsif sender_signed_in? %>
+          <li>
+            <a href="/sender/deliveries">
+              <i class="mdi-maps-directions-bike left"></i> Entregas
+            </a>
+          </li>
+      <% end %>
+      <li>
+        <a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="user-dropdown">
+          <i class="mdi-action-account-circle left"></i>
+          <% if sender_signed_in? %>
+              <%= current_sender.email %>
+          <% elsif admin_signed_in? %>
+              <%= current_admin.email %>
+          <% end %>
+          <i class="mdi-navigation-arrow-drop-down right"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
   <ul class="side-nav" id="mobile-demo">
     <li>
       <a href="sass.html">
@@ -127,7 +123,8 @@
     <% end %>
     <li class="divider"></li>
   </ul>
-</div>
+</nav>
+
 <!-- Navbar goes here -->
 
 <% if notice.present? %>
@@ -138,11 +135,11 @@
 
 
 <!-- Page Layout here -->
-<div class="main container z-depth-2">
+<div>
   <%= yield %>
 </div>
 
-<footer class="page-footer green darken-2">
+<footer class="footer">
   <div class="container ">
     <div class="row">
       <div class="col l6 s12">

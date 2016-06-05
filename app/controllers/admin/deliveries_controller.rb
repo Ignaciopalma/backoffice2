@@ -88,6 +88,7 @@ class Admin::DeliveriesController < ApplicationController
 			@distancia /= @deliveries.length
 		end
 
+		@delivery = Delivery.new
 
 	end
 

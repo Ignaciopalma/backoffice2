@@ -19,10 +19,11 @@
  * file per style scope.
 */
 
-@import "materialize/components/color";
-$primary-color: color("green", "darken-3") !default;
-$secondary-color: color("green", "darken-1") !default;
+
 @import "materialize";
+
+@import 'bourbon';
+@import 'neat';	
 
 /* ***************** */
 /* 01. VARIABLES */
@@ -31,10 +32,147 @@ $secondary-color: color("green", "darken-1") !default;
 $container-title-height: 50px;
 $map-height: 300px;
 
-h1,h2,h3,h4,h5,h6{
-	color: $secondary-color;
+$primary-font: 'LaskiSlab-Regular', 'Georgia', 'Times', serif;
+$secondary-font: 'BlocC', 'Impact', 'Arial Black', sans-serif;
+$titles-font: 'LaskiSlab-ExtraLight', 'Georgia', 'Times', serif;
+$negritas-font: 'LaskiSlab-Bold', 'Georgia', 'Times', serif;
+$mobile: new-breakpoint(max-width 767px 4);
+$velo-negro: #171717;
+$velo-gris: #dcdee3;
+
+@font-face {
+  font-family: 'BlocC';
+  src: url('pt-bloc-cyrillic.eot'); /* IE9 Compat Modes */
+  src: url('pt-bloc-cyrillic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('pt-bloc-cyrillic.woff2') format('woff2'), /* Modern Browsers */
+    url('pt-bloc-cyrillic.woff') format('woff'), /* Modern Browsers */
+    url('pt-bloc-cyrillic.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('pt-bloc-cyrillic.svg') format('svg'); /* Legacy iOS */  weight: normal;
+  style: normal;
 }
 
+@font-face {
+  font-family: 'LaskiSlab-Regular';
+  src: url('LaskiSlab-Regular.eot'); /* IE9 Compat Modes */
+  src: url('LaskiSlab-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('LaskiSlab-Regular.woff2') format('woff2'), /* Modern Browsers */
+    url('LaskiSlab-Regular.woff') format('woff'), /* Modern Browsers */
+    url('LaskiSlab-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('LaskiSlab-Regular.svg') format('svg'); /* Legacy iOS */  weight: 400;
+  style: normal;
+}
+
+@font-face {
+  font-family: 'LaskiSlab-ExtraLight';
+  src: url('LaskiSlab-ExtraLight.eot'); /* IE9 Compat Modes */
+  src: url('LaskiSlab-ExtraLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('LaskiSlab-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
+    url('LaskiSlab-ExtraLight.woff') format('woff'), /* Modern Browsers */
+    url('LaskiSlab-ExtraLight.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('LaskiSlab-ExtraLight.svg') format('svg'); /* Legacy iOS */  weight: 200;
+  style: normal;
+}
+
+@font-face {
+  font-family: 'LaskiSlab-Bold';
+  src: url('LaskiSlab-Bold.eot'); /* IE9 Compat Modes */
+  src: url('LaskiSlab-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('LaskiSlab-Bold.woff2') format('woff2'), /* Modern Browsers */
+    url('LaskiSlab-Bold.woff') format('woff'), /* Modern Browsers */
+    url('LaskiSlab-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('LaskiSlab-Bold.svg') format('svg'); /* Legacy iOS */  weight: 600;
+  style: normal;
+}
+
+body {
+    background: -moz-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(14,60,14,1)), color-stop(100%, rgba(64,131,40,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* ie10+ */
+    background: linear-gradient(0deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0E3C0E', endColorstr='#408328',GradientType=0 ); /* ie6-9 */
+}
+
+h1,h2,h3,h4,h5,h6{
+	color: black;
+}
+
+nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+
+
+.main-anchor img {
+    width: 180px;
+    margin: 1.3em 0 1.3em 4em;
+}
+
+.infogram {
+  margin: 0 5%;
+
+  div {
+
+    div:first-child {
+      border: none;
+      margin-top: 12%;
+    }
+
+    div.inner-admin {
+      text-align: center;
+      border: 1px solid white;
+      border-radius: 15%;
+      margin: 25px 0;
+      color: $velo-gris;
+      height: 18%;
+      font-size: .8em;
+
+      p, b {
+        margin: 0;
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+.infotable{
+  background-color: $velo-gris;
+  margin: 0 5%;
+
+  .infotable-nav {
+    background-color: #0E3C0E;
+  }
+
+}
+
+.historial-de-carreras {
+  margin: 0 5%;
+
+  div {
+
+    div:first-child {
+      border: none;
+    }
+
+    div.inner {
+      border: 1px solid white;
+      height: 60px;
+      border-radius: 8%;
+      padding: 5%;
+    }
+  }
+}
+
+.user-table {
+  background-color: $velo-gris;
+  margin: 0 5%;
+}
+
+.sender-table {
+  background-color: $velo-gris;
+}
 /* ***************** */
 /* 02. MAIN LAYOUT */
 /* ***************** */
@@ -61,7 +199,6 @@ h1,h2,h3,h4,h5,h6{
 
 /* .container.main is the container that has the <% yield %> tag */
 body .container.main{
-	background-color: white;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	padding-top: $container-title-height;
@@ -168,3 +305,15 @@ table.qr {
 table.qr td{
 	padding: 5px;
 }
+
+.footer {
+  
+}
+
+
+tr:hover {
+  background: green;
+}
+
+
+

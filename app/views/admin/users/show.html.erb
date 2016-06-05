@@ -90,79 +90,102 @@
         <% end %>
       </div>
     </div>
-
-
-
 <% end %>
-<h5>Historial de carreras</h5>
-<div class="row">
-  <div class="input-field col s8">
-    <b>Cantidad de envíos mes: </b> <%= @deliveries.length %>
-    <br/>Total
-    <b>Cantidad de envíos histórico: </b> <%= @total_envios %>
-    <br/>
-    <b>Total Comisión: </b> <%= @total_comission %>
+
+<div class="historial-de-carreras">
+  <div class="row">
+    <div class="col s6">
+    <h5>Hola <%= @user.first_name+" "+@user.last_name %></h5>
+    </div>
+    <div class="col s1 offset-s3">
+        <div class="inner">
+          <p><%= @deliveries.length %></p><br><b>Cantidad de envíos mes: </b> 
+        </div>
+    </div>
+
+    <div class="col s1">
+      <div class="inner">
+        <p><%= @total_envios %></p><br><b>Cantidad de envíos histórico: </b>
+      </div>
+    </div>
+
+    <div class=" col s1">
+      <div class="inner">
+        <p><%= @total_comission %></p><br><b>Total Comisión: </b> 
+      </div>
+    </div>
   </div>
-  <div class="input-field col s2">
-    <%= select("user_delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
-  </div>
-  <div class="input-field col s2">
-    <%= select("user_delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
-  </div>
-
-  <script>
-      var filter = function(){
-          console.log($('#user_delivery_month').val());
-          console.log($('#user_delivery_year').val());
-          var query = updateQueryStringParameter(window.location.href, 'month', $('#user_delivery_month').val());
-          query = updateQueryStringParameter(query, 'year', $('#user_delivery_year').val());
-          window.open(query , "_self");
-      }
-
-      function updateQueryStringParameter(uri, key, value) {
-          var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-          var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-          if (uri.match(re)) {
-              return uri.replace(re, '$1' + key + "=" + value + '$2');
-          }
-          else {
-              return uri + separator + key + "=" + value;
-          }
-      }
-  </script>
-
-  <script>
-      $(document).ready(function() {
-          $('select').material_select();
-      });
-  </script>
-
 </div>
-<table class="bordered centered hoverable">
- <thead>
-   <tr>
-     <th>Remitente</th>
-     <th>Address inicio</th>
-     <th>Address entrega</th>
-     <th>Destinatario</th>
-     <th>Kms</th>
-     <th>Fecha</th>
-     <th>Comision</th>
-   </tr>
- </thead>
 
- <tbody>
- <% @deliveries.each do |delivery| %>
+
+
+<div class="user-table">
+
+    <div class="row">
+      <div class="col s6">
+        <h4>Detalle de Envios</h4>
+      </div>
+      <div class="col s3">
+        <%= select("user_delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+      </div>
+      <div class="col s3">
+        <%= select("user_delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+      </div>
+    </div>
+
+  <table class="bordered centered hoverable striped">
+   <thead>
      <tr>
-       <td><%= delivery.sender.business_name %></td>  
-       <td><%= delivery.address_start %>, <%= delivery.comuna_start %></td>
-       <td><%= delivery.address_finish %>, <%= delivery.comuna_finish %></td>
-       <td><%= delivery.destinatary_name %></td>
-       <td><%= delivery.km %></td>
-       <td><%= delivery.created_at.strftime("%d/%m/%Y") %></td>
-       <td>$<%= delivery.comission %></td>
+       <th>Remitente</th>
+       <th>Address inicio</th>
+       <th>Address entrega</th>
+       <th>Destinatario</th>
+       <th>Kms</th>
+       <th>Fecha</th>
+       <th>Comision</th>
      </tr>
- <% end %>
- </tbody>
-</table>
+   </thead>
+
+   <tbody>
+   <% @deliveries.each do |delivery| %>
+       <tr>
+         <td><%= delivery.sender.business_name %></td>  
+         <td><%= delivery.address_start %>, <%= delivery.comuna_start %></td>
+         <td><%= delivery.address_finish %>, <%= delivery.comuna_finish %></td>
+         <td><%= delivery.destinatary_name %></td>
+         <td><%= delivery.km %></td>
+         <td><%= delivery.created_at.strftime("%d/%m/%Y") %></td>
+         <td>$<%= delivery.comission %></td>
+       </tr>
+   <% end %>
+   </tbody>
+  </table>
+</div>
+
+<script>
+    var filter = function(){
+        console.log($('#user_delivery_month').val());
+        console.log($('#user_delivery_year').val());
+        var query = updateQueryStringParameter(window.location.href, 'month', $('#user_delivery_month').val());
+        query = updateQueryStringParameter(query, 'year', $('#user_delivery_year').val());
+        window.open(query , "_self");
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+            return uri + separator + key + "=" + value;
+        }
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
 

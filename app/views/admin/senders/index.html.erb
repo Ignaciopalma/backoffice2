@@ -8,30 +8,35 @@
 
 </div>
 
-<table class="bordered centered hoverable ">
-  <thead>
-  <tr>
-    <th>Correo</th>
-    <th class="actions" colspan="3">Acciones</th>
-  </tr>
-  </thead>
 
-  <tbody>
-  <% @senders.each do |sender| %>
-      <tr>
-        <td><%= sender.email %></td>
-        <td class="actions">
-            <%= link_to admin_sender_path(sender), :class => 'btn-floating green' do %>
-            <i class=" mdi-image-remove-red-eye"></i>
-          <% end %>
-          <%= link_to edit_admin_sender_path(sender), :class => 'btn-floating yellow darken-2 ' do %>
-            <i class="mdi-editor-mode-edit"></i>
-          <% end %>
-        <!--  <%= link_to admin_sender_path(sender), :class => 'btn-floating red', :method => :delete , :data => {:confirm => '¿Seguro que deseas eliminar esta empresa?'} do %>
-            <i class="mdi-content-clear"></i>
-          <% end %>-->
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="sender-table">
+  <table class="bordered centered hoverable ">
+    <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th class="actions" colspan="3">Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @senders.each do |sender| %>
+        <tr>
+          <td><%= sender.business_name %></td>
+          <td><%= sender.email %></td>
+          <td class="actions">
+              <%= link_to admin_sender_path(sender), :class => 'btn-floating green' do %>
+              <i class=" mdi-image-remove-red-eye"></i>
+            <% end %>
+            <%= link_to edit_admin_sender_path(sender), :class => 'btn-floating yellow darken-2 ' do %>
+              <i class="mdi-editor-mode-edit"></i>
+            <% end %>
+          <!--  <%= link_to admin_sender_path(sender), :class => 'btn-floating red', :method => :delete , :data => {:confirm => '¿Seguro que deseas eliminar esta empresa?'} do %>
+              <i class="mdi-content-clear"></i>
+            <% end %>-->
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
