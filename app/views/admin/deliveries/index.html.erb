@@ -4,68 +4,67 @@
   });
 </script>
 
-<div class="row infogram">
-    <div class="col s12 m5 l5 valign-wrapper">
-      <div class="">
-       <% if admin_signed_in? %>
-          <h5 class="title valign"><i class="mdi-maps-directions-bike"></i> Hola <%= current_admin.email %></h5>
-       <% end %>
-      </div>
-    </div>
+<div id="Infogram" class="row"> <!-- INFOGRAM -->
+	
+	<div class="infogram_inner">
+		<div class="col s12 m5 l5 valign-wrapper">
+		  <div class="callout">
+		   <% if admin_signed_in? %>
+			  <h5 class="title valign"><i class="mdi-maps-directions-bike"></i> Hola <%= current_admin.email %></h5>
+			<p> Tu ultima galleta fue de Avena y Chocolate</p>
+			  <% end %>
+		  </div>
+		</div>
 
-    <div class="col s12 m1 l1">
-        <div class="inner-admin">
-          <p><%= @deliveries.length %></p><br>
-           <b>Total Envios:</b>
-        </div>
-    </div>
-
-    <div class="col s12 m1 l1">
-       <div class="inner-admin">
-         <p>$<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Total Neto</b>
-      </div>
-    </div>
-
-    <div class="col s12 m1 l1">
-      <div class="inner-admin">
-         <p>$<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br> <b>IVA</b> 
-      </div>
-    </div>
-
-    <div class="col s12 m1 l1">
-       <div class="inner-admin">
-          <p>$<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>IVA</b> 
-       </div>
-    </div>
-
-    <div class="col s12 m1 l1">
-       <div class="inner-admin">
-        <p>$<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Monto acumulado Velo Express: </b>
-       </div>
-    </div>
-
-    <div class="col s12 m1 l1">
-      <div class="inner-admin">
-       <p>$<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Monto acumulado Ciclistas: </b> 
-      </div>
-    </div>
-
-    <div class="col s12 m1 l1">
-        <div class="inner-admin">
-         <p><%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms</p><br><b>Distancia promedio: </b>
-       </div>
-    </div>
+		<div class="col s12 m1 l1">
+			<div class="inner-admin">
+			  <p><%= @deliveries.length %></p><br>
+			   <b>Total Envios:</b>
+			</div>
+		</div>
+		<div class="col s12 m1 l1">
+		   <div class="inner-admin">
+			 <p>$<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Total Neto</b>
+		  </div>
+		</div>
+		<div class="col s12 m1 l1">
+		  <div class="inner-admin">
+			 <p>$<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br> <b>IVA</b> 
+		  </div>
+		</div>
+		<div class="col s12 m1 l1">
+		   <div class="inner-admin">
+			  <p>$<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>IVA</b> 
+		   </div>
+		</div>
+		<div class="col s12 m1 l1">
+		   <div class="inner-admin">
+			<p>$<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Monto acumulado Velo Express: </b>
+		   </div>
+		</div>
+		<div class="col s12 m1 l1">
+		  <div class="inner-admin">
+		   <p>$<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Monto acumulado Ciclistas: </b> 
+		  </div>
+		</div>
+		<div class="col s12 m1 l1">
+			<div class="inner-admin">
+			 <p><%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms</p><br><b>Distancia promedio: </b>
+		   </div>
+		</div>
+	</div>	
+	
 </div>
 
 
 <div class="infotable">
     <div class="infotable-nav">
-      <a class='dropdown-button btn green darken-4 active' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a>
+      <a class='dropdown-button btn verde active' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a>
       
-      <%= link_to "Nuevo Envio", "#modal2", class: "btn green darken-4 waves-effect waves-light btn modal-trigger"  %> 
-      <%= link_to "REVISAR", "#", class: "btn green darken-4" %>
-      <%= link_to "RESEÑAS", "#", class: "btn green darken-4" %>
-      <%= link_to "FAQ", "#", class: "btn green darken-4" %>
+      <%= link_to "Nuevo Envio", "#modal2", class: "btn verde waves-effect waves-light btn modal-trigger"  %> 
+		<%= link_to "REVISAR", "#", class: "btn verde" %>
+      <%= link_to "RESEÑAS", "#", class: "btn verde" %>
+      <%= link_to "FAQ", "#", class: "btn verde" %>
 
       <ul id='dropdown1' class='dropdown-content'>
         <% if params[:state].blank? && params[:confirmed].blank? && params[:pay].blank? && params[:sender_pay].blank?%>
@@ -119,15 +118,19 @@
 
 
     <div class="row">
-      <div class="input-field col s2 m2 l2">
-        <%= select("delivery", "sender", sender_options, {include_blank: "Todos", selected: @sender}, :onchange => 'filter();') %>
-      </div>
-      <div class="input-field col s2 m2 l2">
-        <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
-      </div>
-      <div class="input-field col s1 m1 l1">
-        <%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
-      </div>
+		<h3 class="col s6">Welcome amigo!</h3>
+		
+		<div class="col s6">
+		  <div class="input-field col s4 m4 l4">
+			<%= select("delivery", "sender", sender_options, {include_blank: "Todos", selected: @sender}, :onchange => 'filter();') %>
+		  </div>
+		  <div class="input-field col s4 m4 l4">
+			<%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+		  </div>
+		  <div class="input-field col s2 m2 l2">
+			<%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+		  </div>
+		</div>
     </div>
 
       <script>

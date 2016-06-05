@@ -1,4 +1,4 @@
-/*
+/* HOLA NACHO!
  *
  * SECTIONS
  * ------------
@@ -22,8 +22,6 @@
 
 @import "materialize";
 
-@import 'bourbon';
-@import 'neat';	
 
 /* ***************** */
 /* 01. VARIABLES */
@@ -37,61 +35,60 @@ $secondary-font: 'BlocC', 'Impact', 'Arial Black', sans-serif;
 $titles-font: 'LaskiSlab-ExtraLight', 'Georgia', 'Times', serif;
 $negritas-font: 'LaskiSlab-Bold', 'Georgia', 'Times', serif;
 $mobile: new-breakpoint(max-width 767px 4);
+
 $velo-negro: #171717;
 $velo-gris: #dcdee3;
 
+$velo-verde: rgba(64,131,40,1);
+$velo-verde-oscuro: rgba(14,60,14,1);
+
 @font-face {
   font-family: 'BlocC';
-  src: url('pt-bloc-cyrillic.eot'); /* IE9 Compat Modes */
-  src: url('pt-bloc-cyrillic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('pt-bloc-cyrillic.woff2') format('woff2'), /* Modern Browsers */
-    url('pt-bloc-cyrillic.woff') format('woff'), /* Modern Browsers */
-    url('pt-bloc-cyrillic.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('pt-bloc-cyrillic.svg') format('svg'); /* Legacy iOS */  weight: normal;
-  style: normal;
+  src: url('../pt-bloc-cyrillic.eot'); /* IE9 Compat Modes */
+  src: url('../pt-bloc-cyrillic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../pt-bloc-cyrillic.woff2') format('woff2'), /* Modern Browsers */
+    url('../pt-bloc-cyrillic.woff') format('woff'), /* Modern Browsers */
+    url('../pt-bloc-cyrillic.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../pt-bloc-cyrillic.svg') format('svg'); /* Legacy iOS */  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'LaskiSlab-Regular';
-  src: url('LaskiSlab-Regular.eot'); /* IE9 Compat Modes */
-  src: url('LaskiSlab-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('LaskiSlab-Regular.woff2') format('woff2'), /* Modern Browsers */
-    url('LaskiSlab-Regular.woff') format('woff'), /* Modern Browsers */
-    url('LaskiSlab-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('LaskiSlab-Regular.svg') format('svg'); /* Legacy iOS */  weight: 400;
-  style: normal;
+  src: url('../LaskiSlab-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../LaskiSlab-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../LaskiSlab-Regular.woff2') format('woff2'), /* Modern Browsers */
+    url('../LaskiSlab-Regular.woff') format('woff'), /* Modern Browsers */
+    url('../LaskiSlab-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../LaskiSlab-Regular.svg') format('svg'); /* Legacy iOS */  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'LaskiSlab-ExtraLight';
-  src: url('LaskiSlab-ExtraLight.eot'); /* IE9 Compat Modes */
-  src: url('LaskiSlab-ExtraLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('LaskiSlab-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
-    url('LaskiSlab-ExtraLight.woff') format('woff'), /* Modern Browsers */
-    url('LaskiSlab-ExtraLight.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('LaskiSlab-ExtraLight.svg') format('svg'); /* Legacy iOS */  weight: 200;
-  style: normal;
+  src: url('../LaskiSlab-ExtraLight.eot'); /* IE9 Compat Modes */
+  src: url('../LaskiSlab-ExtraLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../LaskiSlab-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
+    url('../LaskiSlab-ExtraLight.woff') format('woff'), /* Modern Browsers */
+    url('../LaskiSlab-ExtraLight.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../LaskiSlab-ExtraLight.svg') format('svg'); /* Legacy iOS */  font-weight: 200;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'LaskiSlab-Bold';
-  src: url('LaskiSlab-Bold.eot'); /* IE9 Compat Modes */
-  src: url('LaskiSlab-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('LaskiSlab-Bold.woff2') format('woff2'), /* Modern Browsers */
-    url('LaskiSlab-Bold.woff') format('woff'), /* Modern Browsers */
-    url('LaskiSlab-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('LaskiSlab-Bold.svg') format('svg'); /* Legacy iOS */  weight: 600;
-  style: normal;
+  src: url('../LaskiSlab-Bold.eot'); /* IE9 Compat Modes */
+  src: url('../LaskiSlab-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../LaskiSlab-Bold.woff2') format('woff2'), /* Modern Browsers */
+    url('../LaskiSlab-Bold.woff') format('woff'), /* Modern Browsers */
+    url('../LaskiSlab-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../LaskiSlab-Bold.svg') format('svg'); /* Legacy iOS */  font-weight: 600;
+  font-style: normal;
 }
 
-body {
-    background: -moz-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* ff3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(14,60,14,1)), color-stop(100%, rgba(64,131,40,1))); /* safari4+,chrome */
-    background: -webkit-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* safari5.1+,chrome10+ */
-    background: -o-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* opera 11.10+ */
-    background: -ms-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* ie10+ */
-    background: linear-gradient(0deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* w3c */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0E3C0E', endColorstr='#408328',GradientType=0 ); /* ie6-9 */
+body {	
+	font-family: $primary-font;
+	background-color: $velo-gris;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -99,8 +96,22 @@ h1,h2,h3,h4,h5,h6{
 }
 
 nav {
+  position: absolute;
   background-color: transparent;
   box-shadow: none;
+  height: 74px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-family: $secondary-font;
+	
+	ul a {
+		font-size: 1.2em;
+		color: #fff;
+		display: block;
+		padding: 0 15px;
+  	    text-transform: uppercase;
+		letter-spacing: 0.05em;		
+	}
+  
 }
 
 
@@ -110,8 +121,44 @@ nav {
     margin: 1.3em 0 1.3em 4em;
 }
 
-.infogram {
-  margin: 0 5%;
+
+
+/* ***************** */
+/* 02 INFOGRAM */
+/* ***************** */
+
+#Infogram {
+	
+	/* junior hack */ 
+	padding-top: 75px;
+	height: 550px;
+
+	background: -moz-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(14,60,14,1)), color-stop(100%, rgba(64,131,40,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(90deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* ie10+ */
+    background: linear-gradient(0deg, rgba(64,131,40,1) 0%, rgba(14,60,14,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0E3C0E', endColorstr='#408328',GradientType=0 ); /* ie6-9 */
+	
+	.callout{
+		
+		p{
+		color: #fff;
+		}
+		
+		h1,h2,h3,h4,h5 {
+		color: #fff;
+		}
+	}
+	
+	
+	
+}
+
+.infogram_inner {
+    margin: 0 auto;
+	max-width: 1100px;
 
   div {
 
@@ -139,12 +186,33 @@ nav {
 
 .infotable{
   background-color: $velo-gris;
-  margin: 0 5%;
+  margin: -300px 5%;
 
   .infotable-nav {
-    background-color: #0E3C0E;
+    background-color: rgba(14,60,14,1);
+	  
+	  .btn.verde{
+		  color: #CFCFCF;
+		  background: rgba(14,60,14,1);
+		  box-shadow: 0 !important;
+		  font-family: $secondary-font;
+		  text-transform: uppercase;
+		  letter-spacing: 0.05em;	
+	  }
+	  
+	  
+	  
   }
 
+	.table {
+		max-width: 1100px;
+		margin: 1em auto;
+		
+		tr {
+    	border: 1px solid #ccc;
+		}
+	}
+	
 }
 
 .historial-de-carreras {
@@ -176,6 +244,45 @@ nav {
 /* ***************** */
 /* 02. MAIN LAYOUT */
 /* ***************** */
+
+
+/* main-content is the container that has the <% yield %> tag */
+.main-content .modal-form-container{
+	min-width: 400px;
+	width: 400px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* logo */
+.logo{
+	padding: 2em 0;
+	margin-bottom: 0;
+}
+
+/* .modal-form-container title styling */
+.main-content .modal-form-container .form-title{
+	background-color: #0E3C0E;
+	height: 45px;
+}
+
+.main-content .modal-form-container .form-title h4{
+	color: white;
+	font-size: 20px;
+	margin: 0;
+	line-height: 45px;
+	padding: 0 10px;
+}
+.main-content .modal-form-container .content{
+	padding: 1em;
+}
+
+.main-content .modal-form-container .content .checkbox-padding {
+	padding-left: 53px !important;
+}
+
+
+
 
 /* navbar logo and icon padding */
 @media #{$medium-and-up} {
@@ -312,7 +419,7 @@ table.qr td{
 
 
 tr:hover {
-  background: green;
+  background: #ccc;
 }
 
 
