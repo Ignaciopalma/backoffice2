@@ -27,6 +27,8 @@
         <td><%= user.last_name %></td>
         <td class="actions">
 
+          <%= link_to "Profile", controller: "users", action: "profile", id: user %>
+
           <%= link_to admin_user_path(user), :class => 'btn-floating green' do %>
               <i class=" mdi-image-remove-red-eye"></i>
           <% end %>

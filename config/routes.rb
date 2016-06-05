@@ -68,6 +68,8 @@ Rails.application.routes.draw do
     get  'users/deactivate/:id' => 'users#deactivate'
 
     get  'deliveries/grace/:id' => 'deliveries#grace'
+
+    match 'profile/:id', via: [:get], :to => 'users#profile'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -24,7 +24,9 @@
 
       <% if admin_signed_in? %>
           <li>
-            <%= link_to "Usuarios", admin_users_path %>
+            <%= link_to admin_users_path do %>
+                <i class="mdi-action-account-child left"></i> Usuarios
+            <% end %>
           </li>
           <li>
             <%= link_to admin_senders_path do  %>

@@ -1,0 +1,95 @@
+<h1>test</h1>
+
+<div class="container-title">
+  <div class="row wrapper">
+    <h3 class="title"><i class="mdi-action-account-child"></i> <%= @user.first_name+" "+@user.last_name %></h3>
+  </div>
+</div>
+
+<%= form_for [:admin, @user], :html => {:multipart => true, :class => 'col s12 classic-form'} do |f| %>
+    <h5>Datos personales</h5>
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-communication-email prefix"></i>
+        <%= f.email_field :email, placeholder: 'Ingresa el correo', readonly: true %>
+        <%= f.label :email, 'Correo', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-communication-email prefix"></i>
+        <%= f.text_field :rut, placeholder: 'Ingresa el RUT', readonly: true  %>
+        <%= f.label :rut, 'RUT', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :first_name, placeholder: 'Ingresa el nombre', readonly: true  %>
+        <%= f.label :first_name, 'Nombre', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :last_name, placeholder: 'Ingresa el apellido', readonly: true  %>
+        <%= f.label :last_name, 'Apellido', :class => 'active' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :address, placeholder: 'Ingresa la dirección', readonly: true  %>
+        <%= f.label :address, 'Dirección', :class => 'active' %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :phone, placeholder: 'Ingresa el teléfono', readonly: true  %>
+        <%= f.label :phone, 'Teléfono', :class => 'active' %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= select("user", "occupation_id", Occupation.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Ocupación"}, disabled: true ) %>
+      </div>
+      <div class="input-field col s6">
+        <i class="mdi-social-person prefix"></i>
+        <%= f.text_field :occupation_detail, placeholder: 'Detalle de ocupación', readonly: true  %>
+        <%= f.label :occupation_detail, 'Detalle de ocupación', :class => 'active' %>
+      </div>
+    </div>
+
+    <h5>Datos bancarios</h5>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= select("user", "bank_id", Bank.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Banco"}, disabled: true) %>
+      </div>
+      <div class="input-field col s6">
+        <%= select("user", "account_type_id", AccountType.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Seleccione Tipo de Cuenta"},disabled: true) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="mdi-action-https  prefix"></i>
+        <%= f.text_field :account_number, placeholder: 'Ingresa el número de cuenta'  , readonly: true  %>
+        <%= f.label :account_number, 'Número de cuenta', :class=>'active' %>
+      </div>
+    </div>
+
+    <div class="row actions">
+      <div class="col s6 right-align">
+        <%= link_to :back, :class => 'waves-effect waves-light btn' do %>
+            <i class="mdi-navigation-arrow-back"></i> Volver
+        <% end %>
+      </div>
+
+      <div class="col s6">
+        <%= link_to edit_admin_user_path(@user), :class => 'btn waves-effect waves-light' do %>
+            <i class="mdi-content-send right"></i> Editar
+        <% end %>
+      </div>
+    </div>
+<% end %>
