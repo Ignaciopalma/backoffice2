@@ -11,11 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require materialize-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
-//= require gmaps/google
 
 $(document).on('ready', function () {
 	// Actions to do

@@ -13,7 +13,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'rolify'
-
+gem 'bourbon'
+gem 'neat', '~> 1.7', '>= 1.7.4'
 
 group :development, :test do
   gem 'byebug'
@@ -36,7 +37,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
-gem 'materialize-sass'
 gem 'rqrcode', :git => "git://github.com/whomwah/rqrcode.git"
 gem 'chunky_png'
 gem 'rqrcode_png'

@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Users/pabloanttila/Clientes/VELOEXPRESS/03 Development/backoffice2/public/assets/admin/init_map_edit-fd7705e08e694d64230f104c560fe67981f9f17ea525115b7935f444ccffc1d6.js",
+        "/Users/pabloanttila/Clientes/VELOEXPRESS/03 Development/backoffice2/app/assets/javascripts/application.js",
+        "/Users/pabloanttila/Clientes/VELOEXPRESS/03 Development/backoffice2/app/assets/javascripts/admin/init_map_bu.js"
+    ]
+}

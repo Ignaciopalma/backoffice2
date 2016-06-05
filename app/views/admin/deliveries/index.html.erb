@@ -4,54 +4,56 @@
   });
 </script>
 
-<div id="Infogram" class="row"> <!-- INFOGRAM -->
+<div id="Infogram" > <!-- INFOGRAM -->
 	
 	<div class="infogram_inner">
-		<div class="col s12 m5 l5 valign-wrapper">
-		  <div class="callout">
-		   <% if admin_signed_in? %>
-			  <h5 class="title valign"><i class="mdi-maps-directions-bike"></i> Hola <%= current_admin.email %></h5>
-			<p> Tu ultima galleta fue de Avena y Chocolate</p>
-			  <% end %>
-		  </div>
-		</div>
 
-		<div class="col s12 m1 l1">
-			<div class="inner-admin">
-			  <p><%= @deliveries.length %></p><br>
-			   <b>Total Envios:</b>
-			</div>
-		</div>
-		<div class="col s12 m1 l1">
-		   <div class="inner-admin">
-			 <p>$<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Total Neto</b>
-		  </div>
-		</div>
-		<div class="col s12 m1 l1">
-		  <div class="inner-admin">
-			 <p>$<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br> <b>IVA</b> 
-		  </div>
-		</div>
-		<div class="col s12 m1 l1">
-		   <div class="inner-admin">
-			  <p>$<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>IVA</b> 
-		   </div>
-		</div>
-		<div class="col s12 m1 l1">
-		   <div class="inner-admin">
-			<p>$<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Monto acumulado Velo Express: </b>
-		   </div>
-		</div>
-		<div class="col s12 m1 l1">
-		  <div class="inner-admin">
-		   <p>$<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %></p><br><b>Monto acumulado Ciclistas: </b> 
-		  </div>
-		</div>
-		<div class="col s12 m1 l1">
-			<div class="inner-admin">
-			 <p><%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms</p><br><b>Distancia promedio: </b>
-		   </div>
-		</div>
+	  <div class="callout">
+	   <% if admin_signed_in? %>
+		  <h2 class="title valign"><i class="mdi-maps-directions-bike"></i> Hola <%= current_admin.email %></h2>
+		<p> Tu ultima galleta fue de Avena y Chocolate</p>
+		  <% end %>
+	  </div>
+		
+	 <div class="data-board">
+		<ul>
+			<li>
+				<%= @deliveries.length %>
+				<span>Envios</span>
+			</li>
+		
+			<li>
+				$<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+				<span>Tot Net</span>
+			</li>
+			
+			<li>
+				$<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+				<span>IVA</span> 
+			</li>
+			
+			<li>
+				$<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+				<span>IVA</span>
+			</li>
+			
+			<li>
+				$<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+				<span>Acum. Ve</span>
+			</li>
+			
+			<li>
+		        $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+				<span>Acum. Cicl </span> 
+			</li>
+			
+			<li>
+				<%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+				<span>Dist. prom.</span>
+			</li>
+		</ul>
+	  </div>	
+		
 	</div>	
 	
 </div>
@@ -113,9 +115,6 @@
         <% end %>
       </ul>
     </div>
-
-
-
 
     <div class="row">
 		<h3 class="col s6">Welcome amigo!</h3>

@@ -1,0 +1,52 @@
+nav {
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  height: 74px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  border-top: 3px solid $velo-verde;
+	
+	.nav-wrapper {
+		@include outer-container;
+	
+		.masthead{
+			@include span-columns(6);
+		}
+		
+		ul a {
+			display: block;
+
+			font-family: $secondary-font;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;		
+			text-decoration: none;
+			font-size: 1.05em;
+			line-height: 2.4em;
+			color: rgba(255,255,255,0.95);
+
+			padding: 0 15px 0 5px;
+		}
+
+		
+		
+		.main-navigation {
+			@include span-columns(6);
+			@include omega();
+			
+			li {
+				  @include span-columns(3);
+			}
+		}
+
+		.main-anchor img {
+			width: 160px;
+			margin: 1.3em 0;
+		}		
+		
+	}
+	
+	#mobile-demo, #user-dropdown { display: none;}
+
+	
+		
+}
