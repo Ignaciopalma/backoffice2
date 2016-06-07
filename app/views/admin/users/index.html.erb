@@ -27,6 +27,7 @@
           <td><%= user.email %></td>
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
+          <td><%= link_to "Profile", controller: "users", action: "profile", id: user %></td>
           <td class="actions">
 
             <%= link_to admin_user_path(user), :class => 'btn-floating green' do %>

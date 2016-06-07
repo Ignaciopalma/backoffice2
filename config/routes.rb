@@ -55,7 +55,11 @@ Rails.application.routes.draw do
   namespace :admin, path: 'admin' do
     resources :deliveries
     resources :senders
-    resources :users
+    resources :users do
+        collection do
+          get :profile
+        end
+    end
     resources :available_areas
     resources :problems
     resources :pricings

@@ -48,18 +48,20 @@
 				}	
 			}
 		}
-	}
-	
-	.callout{
-		@include span-columns(4);
-		margin-top: 2.5em;
-		
-		h2, p {
-			line-height: 110%;
-			margin: 0;
-			color: #fff;
+
+		.callout{
+			@include span-columns(4);
+			margin-top: 2.5em;
+			
+			h2, p, h4, a {
+				line-height: 110%;
+				margin: 0;
+				color: #fff;
+			}
 		}
 	}
+	
+
 }
 
 
@@ -102,7 +104,6 @@
 		
 		.callout{
 			@include span-columns(4);
-
 		}
 		
 			

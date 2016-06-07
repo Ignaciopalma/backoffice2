@@ -8,6 +8,14 @@ footer {
 	div {
 		@include span-columns(6);
 		@include omega(2n);
+		$mobile: new-breakpoint(max-width 500px 2);
+
+		@include media($mobile) {
+			@include span-columns(6);
+
+			width: 100%;
+			
+		}
 
 		text-align: center;
 

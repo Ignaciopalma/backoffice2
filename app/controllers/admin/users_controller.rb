@@ -1,6 +1,6 @@
 class Admin::UsersController < ActionController::Base
   before_action :authenticate_admin!
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :activate, :deactivate]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :activate, :deactivate, :profile]
 
 
   layout 'admin'
@@ -106,6 +106,9 @@ class Admin::UsersController < ActionController::Base
         format.html { redirect_to admin_users_path, notice: 'Ha ocurrido un error'  }
       end
     end
+  end
+
+  def profile
   end
 
   private
