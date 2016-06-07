@@ -15,6 +15,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rolify'
 gem 'bourbon'
 gem 'neat', '~> 1.7', '>= 1.7.4'
+gem 'refills'
 
 group :development, :test do
   gem 'byebug'
