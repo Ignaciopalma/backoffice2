@@ -1,50 +1,53 @@
 
-<div class="container-title">
-  <div class="row wrapper">
+
+
+<div id="Infogram">
     <h3 class="title"><i class="mdi-action-account-child"></i> Usuarios</h3>
 
     <%= link_to new_admin_user_path , :class=>'title-link btn waves-effect waves-light' do %>
         <i class="mdi-content-add"></i> Crear usuario
     <% end %>
-  </div>
 </div>
 
-<table class="bordered centered hoverable ">
-  <thead>
-  <tr>
-    <th>Correo</th>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th class="actions" colspan="3">Acciones</th>
-  </tr>
-  </thead>
+<div class="infotable">
 
-  <tbody>
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td class="actions">
+  <table>
+    <thead>
+    <tr>
+      <th>Correo</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th class="actions" colspan="3">Acciones</th>
+    </tr>
+    </thead>
 
-          <%= link_to admin_user_path(user), :class => 'btn-floating green' do %>
-              <i class=" mdi-image-remove-red-eye"></i>
-          <% end %>
-          <%= link_to edit_admin_user_path(user), :class => 'btn-floating yellow darken-2 ' do %>
-              <i class="mdi-editor-mode-edit"></i>
-          <% end %>
-          <% if user.active == 1 %>
-              <%= link_to "users/deactivate/"+user.id.to_s, :class => 'btn-floating red' do %>
-                  <i class="mdi-content-clear"></i>
-              <% end %>
-          <% end %>
-          <% if user.active == 0 %>
-              <%= link_to "users/activate/"+user.id.to_s, :class => 'btn-floating green' do %>
-                  <i class=" mdi-navigation-check"></i>
-              <% end %>
-          <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td class="actions">
+
+            <%= link_to admin_user_path(user), :class => 'btn-floating green' do %>
+                <i class=" mdi-image-remove-red-eye"></i>
+            <% end %>
+            <%= link_to edit_admin_user_path(user), :class => 'btn-floating yellow darken-2 ' do %>
+                
+            <% end %>
+            <% if user.active == 1 %>
+                <%= link_to "users/deactivate/"+user.id.to_s, :class => 'btn-floating red' do %>
+                    <i class="mdi-content-clear"></i>
+                <% end %>
+            <% end %>
+            <% if user.active == 0 %>
+                <%= link_to "users/activate/"+user.id.to_s, :class => 'btn-floating green' do %>
+                    <i class=" mdi-navigation-check"></i>
+                <% end %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

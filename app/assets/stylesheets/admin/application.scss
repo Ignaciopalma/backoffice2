@@ -50,6 +50,9 @@ $velo-verde-oscuro: 		rgba(14,60,14,1);
 /* ***************** ***************** ***************** */
 
 @import "fonts";
+@import "navigation";
+@import "layout";
+
 
 
 
@@ -67,23 +70,7 @@ body {
 @import "navigation";
 @import "sections";
 
-.historial-de-carreras {
-  margin: 0 5%;
 
-  div {
-
-    div:first-child {
-      border: none;
-    }
-
-    div.inner {
-      border: 1px solid white;
-      height: 60px;
-      border-radius: 8%;
-      padding: 5%;
-    }
-  }
-}
 
 .user-table {
   background-color: $velo-gris;
@@ -244,14 +231,10 @@ table.qr td{
 	padding: 5px;
 }
 
-.footer {
-  
-}
-
-
 tr:hover {
   background: #ccc;
 }
+
 
 
 

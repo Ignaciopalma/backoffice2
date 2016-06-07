@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require underscore
 
+//= require_self
+
 $(document).on('ready', function () {
 	// Actions to do
   	$(".button-collapse").sideNav();
@@ -36,4 +38,17 @@ $(document).on('page:change', function() {
 	$('.tooltipped').tooltip({delay: 30});
 	$('label').addClass('active');
 	// console.log('onchange');
+});
+
+$(function(){
+
+	var $overlay = $('<div id="overlay">WTF!!<div>'); 
+	$("body").append($overlay);
+
+	$("#imageGallery a").click(function(event){
+		event.preventDefault();
+		var href = $(this).attr("class");
+		console.log(href);
+		$overlay.show();
+	});
 });

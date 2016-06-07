@@ -140,65 +140,61 @@
   <%= yield %>
 </div>
 
-<footer class="footer">
-  <div class="container ">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Enlaces relacionados</h5>
-
-        <ul>
-          <% if admin_signed_in? %>
-              <li>
-                <%= link_to  admin_users_path, :class => "grey-text text-lighten-3" do %>
-                    <i class="mdi-action-account-child left"></i> Usuarios
-                <% end %>
-              </li>
-              <li>
-                <%= link_to admin_senders_path, :class => "grey-text text-lighten-3" do  %>
-                    <i class="mdi-action-wallet-travel left"></i> Empresas
-                <% end %>
-              </li>
-              <li>
-                <%= link_to admin_available_areas_path, :class => "grey-text text-lighten-3" do %>
-                    <i class="mdi-maps-pin-drop left"></i> Comunas
-                <% end %>
-              </li>
-              <li>
-                <%= link_to admin_pricings_path, :class => "grey-text text-lighten-3" do %>
-                    <i class="mdi-maps-pin-drop left"></i> Precios
-                <% end %>
-              </li>
-              <li>
-                <%= link_to admin_deliveries_path, :class => "grey-text text-lighten-3" do %>
-                    <i class="mdi-maps-directions-bike left"></i> Entregas
-                <% end %>
-              </li>
-          <% elsif sender_signed_in? %>
-              <li>
-                <a class="grey-text text-lighten-3" href="/sender/deliveries">
+<footer>
+    <div>
+      <h3 class="white-text">Enlaces relacionados</h3>
+      <ul>
+        <% if admin_signed_in? %>
+            <li>
+              <%= link_to  admin_users_path, :class => "grey-text text-lighten-3" do %>
+                  <i class="mdi-action-account-child left"></i> Usuarios
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_senders_path, :class => "grey-text text-lighten-3" do  %>
+                  <i class="mdi-action-wallet-travel left"></i> Empresas
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_available_areas_path, :class => "grey-text text-lighten-3" do %>
+                  <i class="mdi-maps-pin-drop left"></i> Comunas
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_pricings_path, :class => "grey-text text-lighten-3" do %>
+                  <i class="mdi-maps-pin-drop left"></i> Precios
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_deliveries_path, :class => "grey-text text-lighten-3" do %>
                   <i class="mdi-maps-directions-bike left"></i> Entregas
-                </a>
-              </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Preguntas frecuentes</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Términos y condiciones</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Contacto</a></li>
-        </ul>
-      </div>
+              <% end %>
+            </li>
+        <% elsif sender_signed_in? %>
+            <li>
+              <a class="grey-text text-lighten-3" href="/sender/deliveries">
+                <i class="mdi-maps-directions-bike left"></i> Entregas
+              </a>
+            </li>
+        <% end %>
+      </ul>
     </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2015 Veloexpress
-      <a class="grey-text text-lighten-4 right" href="http://vernebikes.cl">Developed by Junior ranked Hackers!</a>
+
+    <div>
+      <h3 class="white-text">Links</h3>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">Preguntas frecuentes</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">Términos y condiciones</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">Contacto</a></li>
+      </ul>
     </div>
+  
+  <div class="copyrights">
+    <p>© 2015 Veloexpress</p>
+    <a class="grey-text text-lighten-4 right" href="http://vernebikes.cl">Developed by Junior ranked Hackers!</a>
   </div>
 </footer>
-</body>
 
+
+</body>
 </html>
