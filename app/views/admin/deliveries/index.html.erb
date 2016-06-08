@@ -1,9 +1,3 @@
-<script>  
-  $(document).ready(function(){
-    $('.modal-trigger').leanModal();
-  });
-</script>
-
 <div id="Infogram" > <!-- INFOGRAM -->
 	
 	<div class="infogram_inner">
@@ -13,6 +7,22 @@
 		  <h2 class="title valign"><i class="mdi-maps-directions-bike"></i> Hola <%= current_admin.email %></h2>
 		<p> Tu ultima galleta fue de Avena y Chocolate</p>
 		  <% end %>
+
+    <div class="modal">
+        <label for="modal-1">
+          <div class="modal-trigger">Nuevo Envio!</div>
+        </label>
+        <input class="modal-state" id="modal-1" type="checkbox" />
+        <div class="modal-fade-screen">
+          <div class="modal-inner">
+            <div class="modal-close" for="modal-1"></div>
+            <h1>Nuevo Envio</h1>
+            <p class="modal-intro">Ingresa los datos</p>
+            <p class="modal-content"><%= render 'form' %>
+            <%= javascript_include_tag 'admin/init_map' %></p>
+          </div>
+        </div>
+      </div>
 	  </div>
 		
 	 <div class="data-board">
@@ -59,14 +69,17 @@
 </div>
 
 
-<div class="infotable">
+
+
+<div class="infotable modal">
     <ul class="infotable-nav" id="imageGallery">
       <li><a class='' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a></li>
-	  <li><%= link_to "Nuevo Envio" %> </li>
       <li><%= link_to "REVISAR", "#", class: "btn verde" %></li>
-	  <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
-	  <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
+      <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
+      <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
     </ul>
+
+
 	
 	   <!-- <ul id='dropdown1' class='dropdown-content'>
         <% if params[:state].blank? && params[:confirmed].blank? && params[:pay].blank? && params[:sender_pay].blank?%>
@@ -114,6 +127,12 @@
             <li><%= link_to "Pagados (Ciclista)", admin_deliveries_path(pay: 2) %> </li>
         <% end %>
       </ul> -->
+
+
+
+
+
+
 
     <div class="infotable-inner">
 		
@@ -230,6 +249,7 @@
     		$('select').material_select();
     	});
     </script>
+
 </div>
 
 
@@ -241,12 +261,7 @@
 
 
 
-<div id="modal2" class="modal">
-  <div class="modal-content">
-    <%= render 'form' %>
-    <%= javascript_include_tag 'admin/init_map' %>
-  </div>
-</div>
+
 
 
 
