@@ -22,6 +22,8 @@
 
 @import "bourbon";
 @import "neat";
+@import "base/base";
+
 
 /* ***************** ***************** ***************** */
 /* 00. VARIABLES */
@@ -294,7 +296,7 @@ tr:hover {
 
   .modal-fade-screen { // overlay
     @include position(fixed, 0);
-    background-color: rgba(#000, 0.85);
+    background-color: rgba(#000, 0.65);
     opacity: 0;
     padding-top: 0.6em;
     text-align: left;
@@ -410,5 +412,26 @@ tr:hover {
   overflow: hidden;
 }
 
+.modal {
+	label {
+		div {
+			width: 50%;
+		    display: inline-block;
+		    transition: all 0.15s ease-out 0s;
+		    background: #f05f5c;
+		    border-radius: 6px;
+		    color: white;
+		    display: block;
+		    font-size: .875em;
+		    font-weight: bold;
+		    letter-spacing: 1px;
+		    margin-bottom: 1em;
+		    padding: 1em;
+		    text-align: center;
+		    text-transform: uppercase;
+
+		}
+	}
+}
 
 

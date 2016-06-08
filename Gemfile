@@ -16,6 +16,7 @@ gem 'rolify'
 gem 'bourbon'
 gem 'neat', '~> 1.7', '>= 1.7.4'
 gem 'refills'
+gem 'bitters'
 
 group :development, :test do
   gem 'byebug'
