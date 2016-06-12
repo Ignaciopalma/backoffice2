@@ -26,37 +26,32 @@
     
 	<ul class="main-navigation">
       <% if admin_signed_in? %>
-          <li>
-            <%= link_to "Usuarios", admin_users_path %>
+          <li id="users">
+            <a href="users">Usuarios</a>
           </li>
-          <li>
-            <%= link_to admin_senders_path do  %>
-                <i class="mdi-action-wallet-travel left"></i> Empresas
-            <% end %>
+          <li id="senders">
+            <a href="senders">Empresas</a>
           </li>
-          <li>
-            <%= link_to admin_deliveries_path do %>
-                <i class="mdi-maps-directions-bike left"></i> Entregas
-            <% end %>
+          <li id="deliveries">
+            <a href="deliveries">Entregas</a>
           </li>
+          <li> <%= link_to('Cerrar sesión', destroy_admin_session_path, :method => :delete) %></li>
       <% elsif sender_signed_in? %>
-          <li>
-            <a href="/sender/deliveries">
-              <i class="mdi-maps-directions-bike left"></i> Entregas
-            </a>
+          <li id="deliveries">
+            <a href="/sender/deliveries">Entregas</a>
           </li>
       <% end %>
-      <li>
+<!--       <li>
         <a class="dropdown-button" data-beloworigin="true" href="#!" data-activates="user-dropdown">
           <i class="mdi-action-account-circle left"></i>
-          <% if sender_signed_in? %>
-              <%= current_sender.email %>
-          <% elsif admin_signed_in? %>
-              <%= current_admin.email %>
-          <% end %>
+          <%# if sender_signed_in? %>
+              <%#= current_sender.email %>
+          <%# elsif admin_signed_in? %>
+              <%#= current_admin.email %>
+          <%# end %>
           <i class="mdi-navigation-arrow-drop-down right"></i>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
   <ul class="side-nav" id="mobile-demo">
@@ -194,7 +189,6 @@
     <a class="grey-text text-lighten-4 right" href="http://vernebikes.cl">Developed by Junior ranked Hackers!</a>
   </div>
 </footer>
-
 
 </body>
 </html>

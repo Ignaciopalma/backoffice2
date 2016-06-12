@@ -1,0 +1,112 @@
+body {	
+	font-family: $primary-font;
+	background-color: $velo-gris;
+	color: $velo-negro;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $negritas-font;
+}
+
+.page-title, .section-title {
+  font-family: $titles-font;
+}
+
+
+
+.user-table {
+  background-color: $velo-gris;
+  margin: 0 5%;
+}
+
+.sender-table {
+  background-color: $velo-gris;
+}
+
+
+/* main-content is the container that has the <% yield %> tag */
+.main-content .modal-form-container{
+	min-width: 400px;
+	width: 400px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* logo */
+.logo{
+	padding: 2em 0;
+	margin-bottom: 0;
+}
+
+/* .modal-form-container title styling */
+.main-content .modal-form-container .form-title{
+	background-color: #0E3C0E;
+	height: 45px;
+}
+
+.main-content .modal-form-container .form-title h4{
+	color: white;
+	font-size: 20px;
+	margin: 0;
+	line-height: 45px;
+	padding: 0 10px;
+}
+.main-content .modal-form-container .content{
+	padding: 1em;
+}
+
+.main-content .modal-form-container .content .checkbox-padding {
+	padding-left: 53px !important;
+}
+
+
+/* .container.main is the container that has the <% yield %> tag */
+body .container.main{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: $container-title-height;
+	padding-bottom: 10px;
+	position: relative;
+	min-height: 80%;
+	min-width: 1000px;
+}
+
+/* .filter-nav is the global nav with filters */
+body .container.main .filter-nav{
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	margin: 1em 0;
+}
+body .container.main .filter-nav ul li a{
+	padding:0 10px;
+	font-size: 14px;
+}
+
+/* .container-title is the container that has the title and one button link */
+body .container.main .container-title{
+	height: $container-title-height;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	right: 0;
+	transition: 0.5s all;
+
+}
+
+body .container.main .container-title .wrapper .title{
+	color: white;
+	padding: 0 1em;
+	margin: 0;
+	font-size: 20px;
+	line-height: $container-title-height;
+	position: relative;
+}
+body .container.main .container-title .wrapper {
+	position: relative;
+}
+body .container.main .container-title .wrapper .title-link{
+	position: absolute !important;
+ 	right: 17px;
+  	top: 8px;
+}

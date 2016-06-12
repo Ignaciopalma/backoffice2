@@ -18,6 +18,8 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
+
+
 */
 
 @import "bourbon";
@@ -45,8 +47,6 @@ $velo-gris: 				#dcdee3;
 $velo-verde: 				rgba(64,131,40,1);
 $velo-verde-oscuro: 		rgba(14,60,14,1);
 
-
-
 /* ***************** ***************** ***************** */
 /* 01. FONTFILES */
 /* ***************** ***************** ***************** */
@@ -54,384 +54,43 @@ $velo-verde-oscuro: 		rgba(14,60,14,1);
 @import "fonts";
 @import "navigation";
 @import "layout";
-
-
-
-
-/* ***************** ***************** ***************** */
-/* 02. Main layout */
-/* ***************** ***************** ***************** */
-
-body {	
-	font-family: $primary-font;
-	background-color: $velo-gris;
-	color: $velo-negro;
-}
-
-@import "layout";
-@import "navigation";
 @import "sections";
-
-
-
-.user-table {
-  background-color: $velo-gris;
-  margin: 0 5%;
-}
-
-.sender-table {
-  background-color: $velo-gris;
-}
-
-
-
 
 /* ***************** */
 /* 02. MAIN LAYOUT */
 /* ***************** */
 
-
-/* main-content is the container that has the <% yield %> tag */
-.main-content .modal-form-container{
-	min-width: 400px;
-	width: 400px;
-	margin: 0 auto;
-	padding: 0;
-}
-
-/* logo */
-.logo{
-	padding: 2em 0;
-	margin-bottom: 0;
-}
-
-/* .modal-form-container title styling */
-.main-content .modal-form-container .form-title{
-	background-color: #0E3C0E;
-	height: 45px;
-}
-
-.main-content .modal-form-container .form-title h4{
-	color: white;
-	font-size: 20px;
-	margin: 0;
-	line-height: 45px;
-	padding: 0 10px;
-}
-.main-content .modal-form-container .content{
-	padding: 1em;
-}
-
-.main-content .modal-form-container .content .checkbox-padding {
-	padding-left: 53px !important;
-}
-
-
-/* .container.main is the container that has the <% yield %> tag */
-body .container.main{
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding-top: $container-title-height;
-	padding-bottom: 10px;
-	position: relative;
-	min-height: 80%;
-	min-width: 1000px;
-}
-
-/* .filter-nav is the global nav with filters */
-body .container.main .filter-nav{
-	height: 40px;
-	line-height: 40px;
-	font-size: 16px;
-	margin: 1em 0;
-}
-body .container.main .filter-nav ul li a{
-	padding:0 10px;
-	font-size: 14px;
-}
-
-/* .container-title is the container that has the title and one button link */
-body .container.main .container-title{
-	height: $container-title-height;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	right: 0;
-	transition: 0.5s all;
-
-}
-
-body .container.main .container-title .wrapper .title{
-	color: white;
-	padding: 0 1em;
-	margin: 0;
-	font-size: 20px;
-	line-height: $container-title-height;
-	position: relative;
-}
-body .container.main .container-title .wrapper {
-	position: relative;
-}
-body .container.main .container-title .wrapper .title-link{
-	position: absolute !important;
- 	right: 17px;
-  	top: 8px;
-}
-
-
-
+@import "main_layout";
 
 /* ***************** */
 /* 03. FORMS */
 /* ***************** */
 
-/* the classic-form is used in the new delivery view */
-form.classic-form{
-	margin: 1em 0;
-}
-form.classic-form .title{
-	margin-top:0;
-	margin-bottom: 10px;
-}
-form.classic-form .row{
-	margin:0;
-}
-form.classic-form i.prefix{
-	color: $velo-verde-oscuro;
-}
-form.classic-form .row.map-container{
-	margin:10px 0;
-}
-.delivery .map-container #map, .delivery .map-container,
-form.classic-form .map-container #map, form.classic-form .map-container{
-	height: $map-height;
-	width: 100%;
-}
-
-
-
+@import "forms";
 
 /* ***************** */
 /* 04. TABLES */
 /* ***************** */
 
-/* the deliveries table is very filled in with data, so we try to maximize space */
-table.deliveries td{
-	padding: 5px 5px;
-}
-
-table.deliveries td.actions, table.deliveries th.actions{
-	width: 100px;
-}
-
-/* styling qr propertis in deliveries/show view */
-.qr-container{
-	text-align: center;
-}
-
-table.qr {
-	height: 200px;
-	max-height: 200px;
-	width:  200px;
-	display: inline-block;
-	margin-top: 0.5rem;
-	margin-left: auto;
-	margin-right: auto;
-}
-table.qr td{
-	padding: 5px;
-}
-
-tr:hover {
-  background: #ccc;
-}
-
-
-
-
-
+@import "tables";
 
 /* ***************** */
 /* MODAL */
 /* ***************** */
 
+@import "modal";
 
-.modal {
-  $base-border-color: #dcdcdc !default;
-  $base-border-radius: 3px !default;
-  $base-background-color: #fff !default;
-  $base-font-size: 1em !default;
-  $base-line-height: 1.5em !default;
-  $action-color: #477dca !default;
-  $dark-gray: #333 !default;
-  $light-gray: #ddd !default;
-  $medium-screen: 40em !default;
-  $large-screen: 53.75em !default;
-  $base-font-color: $dark-gray !default;
-  $modal-padding: 3em;
-  $modal-background: $base-background-color;
-  $modal-close-color: $light-gray;
-  $modal-image-height: 135px;
-  $modal-image-width: $modal-image-height;
-  $modal-trigger-image-width: 300px;
 
-  label {
-    cursor: pointer;
-    margin-bottom: 0;
-  }
+/* ***************** */
+/* MEDIA QUERY */
+/* ***************** */
 
-  label img {
-    border-radius: $modal-trigger-image-width / 2;
-    display: block;
-    max-width: $modal-trigger-image-width;
-  }
+@import "media_queries";
 
-  .modal-state {
-    display: none;
-  }
 
-  .modal-trigger {
-    padding: 0.8em 1em;
-  }
 
-  .modal-fade-screen { // overlay
-    @include position(fixed, 0);
-    background-color: rgba(#000, 0.65);
-    opacity: 0;
-    padding-top: 0.6em;
-    text-align: left;
-    transition: opacity 0.25s ease;
-    visibility: hidden;
-    z-index: 99999999999;
 
-    @include media($large-screen) {
-      padding-top: 10em;
-    }
 
-    .modal-bg {
-      @include position(absolute, 0);
-      cursor: pointer;
-    }
-  }
 
-  .modal-close {
-    @include position(absolute, ($modal-padding /2) ($modal-padding /2) null null);
-    @include size(1.5em);
-    background: $modal-background;
-    cursor: pointer;
-
-    &::after,
-    &::before {
-      @include position(absolute, 3px 3px 0 50%);
-      @include size(0.15em 1.5em);
-      background: $modal-close-color;
-      content: "";
-      display: block;
-      margin: -3px 0 0 -1px;
-      transform: rotate(45deg);
-    }
-
-    &:hover::after,
-    &:hover::before {
-      background: darken($modal-close-color, 10%);
-    }
-
-    &::before {
-      transform: rotate(-45deg);
-    }
-  }
-
-  .modal-inner {
-    background: $modal-background;
-    border-radius: $base-border-radius;
-    margin: auto;
-    margin-top: 0;
-    max-height: 95%;
-    overflow: auto;
-    padding: $modal-padding / 2;
-    position: relative;
-    transition: opacity 0.25s ease;
-    width: 95%;
-
-    @include media($medium-screen) {
-      max-height: 70%;
-      padding: $modal-padding;
-      width: 60%;
-    }
-
-    @include media($large-screen) {
-      width: 50%;
-    }
-
-    h1 {
-      color: $base-font-color;
-      text-align: left;
-      text-transform: capitalize;
-    }
-
-    p {
-      color: $base-font-color;
-      line-height: $base-line-height;
-    }
-
-    .modal-intro {
-      margin-bottom: 1em;
-    }
-
-    .modal-content {
-      color: $base-font-color;
-
-      @include media($medium-screen) {
-        columns: 2 8em;
-      }
-    }
-
-    a.cta {
-      color: $base-background-color;
-      display: inline-block;
-      margin-right: 0.5em;
-      margin-top: 1em;
-
-      &:last-child {
-        padding: 0 2em;
-      }
-    }
-  }
-
-  .modal-state:checked + .modal-fade-screen {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .modal-state:checked + .modal-fade-screen .modal-inner {
-    top: 0.5em;
-  }
-}
-
-.modal-open {
-  overflow: hidden;
-}
-
-.modal {
-	label {
-		div {
-			width: 50%;
-		    display: inline-block;
-		    transition: all 0.15s ease-out 0s;
-		    background: #f05f5c;
-		    border-radius: 6px;
-		    color: white;
-		    display: block;
-		    font-size: .875em;
-		    font-weight: bold;
-		    letter-spacing: 1px;
-		    margin-bottom: 1em;
-		    padding: 1em;
-		    text-align: center;
-		    text-transform: uppercase;
-
-		}
-	}
-}
 
 

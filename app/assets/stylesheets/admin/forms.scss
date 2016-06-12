@@ -1,0 +1,22 @@
+/* the classic-form is used in the new delivery view */
+form.classic-form{
+	margin: 1em 0;
+}
+form.classic-form .title{
+	margin-top:0;
+	margin-bottom: 10px;
+}
+form.classic-form .row{
+	margin:0;
+}
+form.classic-form i.prefix{
+	color: $velo-verde-oscuro;
+}
+form.classic-form .row.map-container{
+	margin:10px 0;
+}
+.delivery .map-container #map, .delivery .map-container,
+form.classic-form .map-container #map, form.classic-form .map-container{
+	height: $map-height;
+	width: 100%;
+}

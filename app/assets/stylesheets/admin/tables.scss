@@ -1,0 +1,30 @@
+/* the deliveries table is very filled in with data, so we try to maximize space */
+table.deliveries td{
+	padding: 5px 5px;
+}
+
+table.deliveries td.actions, table.deliveries th.actions{
+	width: 100px;
+}
+
+/* styling qr propertis in deliveries/show view */
+.qr-container{
+	text-align: center;
+}
+
+table.qr {
+	height: 200px;
+	max-height: 200px;
+	width:  200px;
+	display: inline-block;
+	margin-top: 0.5rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+table.qr td{
+	padding: 5px;
+}
+
+tr:hover {
+  background: #ccc;
+}
