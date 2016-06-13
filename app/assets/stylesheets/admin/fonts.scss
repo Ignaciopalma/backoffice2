@@ -10,44 +10,32 @@
 
 @font-face {
   font-family: 'BlocC';
-  src: url('../pt-bloc-cyrillic.eot'); /* IE9 Compat Modes */
-  src: url('../pt-bloc-cyrillic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../pt-bloc-cyrillic.woff2') format('woff2'), /* Modern Browsers */
-    url('../pt-bloc-cyrillic.woff') format('woff'), /* Modern Browsers */
-    url('../pt-bloc-cyrillic.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../pt-bloc-cyrillic.svg') format('svg'); /* Legacy iOS */  font-weight: normal;
+  src: 	url('../blockbe-condensed.woff2') format('woff2'), /* Modern Browsers */
+    	url('../blockbe-condensed.woff') format('woff'); /* Modern Browsers */
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LaskiSlab-Regular';
-  src: url('../LaskiSlab-Regular.eot'); /* IE9 Compat Modes */
-  src: url('../LaskiSlab-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../LaskiSlab-Regular.woff2') format('woff2'), /* Modern Browsers */
-    url('../LaskiSlab-Regular.woff') format('woff'), /* Modern Browsers */
-    url('../LaskiSlab-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../LaskiSlab-Regular.svg') format('svg'); /* Legacy iOS */  font-weight: 400;
+  src:  url('../LaskiSlab-Regular.woff2') format('woff2'), /* Modern Browsers */
+    url('../LaskiSlab-Regular.woff') format('woff'); /* Modern Browsers */
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LaskiSlab-ExtraLight';
-  src: url('../LaskiSlab-ExtraLight.eot'); /* IE9 Compat Modes */
-  src: url('../LaskiSlab-ExtraLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../LaskiSlab-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
-    url('../LaskiSlab-ExtraLight.woff') format('woff'), /* Modern Browsers */
-    url('../LaskiSlab-ExtraLight.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../LaskiSlab-ExtraLight.svg') format('svg'); /* Legacy iOS */  font-weight: 200;
+  src: url('../LaskiSlab-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
+    url('../LaskiSlab-ExtraLight.woff') format('woff');
+	font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LaskiSlab-Bold';
-  src: url('../LaskiSlab-Bold.eot'); /* IE9 Compat Modes */
-  src: url('../LaskiSlab-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../LaskiSlab-Bold.woff2') format('woff2'), /* Modern Browsers */
-    url('../LaskiSlab-Bold.woff') format('woff'), /* Modern Browsers */
-    url('../LaskiSlab-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../LaskiSlab-Bold.svg') format('svg'); /* Legacy iOS */  font-weight: 600;
+  src: url('../LaskiSlab-Bold.woff2') format('woff2'), /* Modern Browsers */
+    url('../LaskiSlab-Bold.woff') format('woff');
+  font-weight: 600;
   font-style: normal;
 }
