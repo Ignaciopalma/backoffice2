@@ -25,6 +25,8 @@
 @import "bourbon";
 @import "neat";
 @import "base/base";
+@import "fonts";
+
 
 
 /* ***************** ***************** ***************** */
@@ -51,7 +53,6 @@ $velo-verde-oscuro: 		rgba(14,60,14,1);
 /* 01. FONTFILES */
 /* ***************** ***************** ***************** */
 
-@import "fonts";
 @import "navigation";
 @import "layout";
 @import "sections";
