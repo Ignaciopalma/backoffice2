@@ -40,25 +40,6 @@
 // 	// console.log('onchange');
 // });
 
-$(document).on('page:change', function() {
-
-	var $overlay = $("<div id='overlay'><div>"); 
-
-	$overlay.append($mod);
-
-	$("body").append($overlay);
-
-	$("#imageGallery a").click(function(event){
-		event.preventDefault();
-		$overlay.show();
-
-
-		// var href = $(this).attr("class");
-		// console.log(href);
-		
-	});
-
-});
 
 
 $(function() {
@@ -79,21 +60,24 @@ $(function() {
   });
 });
 
-  $(document).ready(function () {
-    if(window.location.href.indexOf("admin/deliveries"))
-    {
-         $(".main-navigation li#deliveries").addClass("selected");
-    }
-    else if(window.location.href.indexOf("admin/users"))
-    {
+$(function () {
+    // if(window.location.pathname.search("admin/senders"))
+    // {
+    //      $(".main-navigation li#users").addClass("selected");
+    // }
+
+    if (document.URL.indexOf("users") > -1) {
          $(".main-navigation li#users").addClass("selected");
-    }
-    else if(window.location.href.indexOf("admin/senders"))
+    } else if(document.URL.indexOf("senders") > -1)
     {
          $(".main-navigation li#senders").addClass("selected");
-    } 
+
+    }
+
     
 });
+
+
 
 
 $(function() {
@@ -119,12 +103,7 @@ $(function() {
   });
 
 
-  // Create Button 
-  var $button = $("<button>Go</button>");
-
-  $(".main-navigation").append($button);
-  // Bind click to button
-  $button.click(function(){
+  $select.change(function(){
     //and go to select location
     window.location = $select.val();
 
@@ -135,5 +114,8 @@ $(function() {
 
   // Deal with selected options
 });
+
+
+
 
 

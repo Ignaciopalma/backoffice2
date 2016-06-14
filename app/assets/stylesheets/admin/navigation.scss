@@ -32,9 +32,16 @@ nav {
 		.main-navigation {
 			@include span-columns(6);
 			@include omega();
-			
+
+			height: 100%;
+
 			li {
-				  @include span-columns(3);
+				@include span-columns(3);
+				@include omega();
+
+				a:hover {
+					color: red;
+				}
 			}
 		}
 
