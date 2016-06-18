@@ -14,33 +14,37 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require jquery.slick
+
 
 //= require_self
 
-// $(document).on('ready', function () {
-// 	// Actions to do
-//   	$(".button-collapse").sideNav();
-// 	$(".dropdown-button").dropdown({hover:true,beloworigin:true});
-// 	$('.tooltipped').tooltip({delay: 30});
-// 	$('label').addClass('active');
-// 	console.log('exec ready')
-//     // $('.container-title').pushpin({ top: 94,offset:64});
+/* ***************** ***************** ***************** */
+/* CODIGO DE CHINO CROWD LATAM */
+/* ***************** ***************** ***************** */
 
-// });
+$(document).on('ready', function () {
+	// Actions to do
+  	$(".button-collapse").sideNav();
+	$(".dropdown-button").dropdown({hover:true,beloworigin:true});
+	$('.tooltipped').tooltip({delay: 30});
+	$('label').addClass('active');
+	console.log('exec ready')
+    // $('.container-title').pushpin({ top: 94,offset:64});
 
-// $(document).on('page:load', function() {
-// 	$(document).trigger('ready');
-// });
+});
 
-// $(document).on('page:change', function() {
-// 	$(".button-collapse").sideNav();
-// 	$(".dropdown-button").dropdown({hover:true,beloworigin:true});
-// 	$('.tooltipped').tooltip({delay: 30});
-// 	$('label').addClass('active');
-// 	// console.log('onchange');
-// });
+$(document).on('page:load', function() {
+	$(document).trigger('ready');
+});
 
-
+$(document).on('page:change', function() {
+	$(".button-collapse").sideNav();
+	$(".dropdown-button").dropdown({hover:true,beloworigin:true});
+	$('.tooltipped').tooltip({delay: 30});
+	$('label').addClass('active');
+	// console.log('onchange');
+});
 
 
 

@@ -24,63 +24,100 @@
         </div>
       </div>
 	  </div>
-		
+
+    
 	 <div class="data-board">
-		<ul>
-			<li>
-				<%= @deliveries.length %>
-				<span>Envios</span>
-			</li>
-		
-			<li>
-				$<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-				<span>Tot Net</span>
-			</li>
-			
-			<li>
-				$<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-				<span>IVA</span> 
-			</li>
-			
-			<li>
-				$<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-				<span>IVA</span>
-			</li>
-			
-			<li>
-				$<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-				<span>Acum. Ve</span>
-			</li>
-			
-			<li>
-		        $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-				<span>Acum. Cicl </span> 
-			</li>
-			
-			<li>
-				<%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
-				<span>Dist. prom.</span>
-			</li>
-		</ul>
-	  </div>	
-		
-	</div>	
+  	 <div class="data-board-desktop">
+  		<ul>
+  			<li>
+  				<%= @deliveries.length %>
+  				<span>Envios</span>
+  			</li>
+  		
+  			<li>
+  				$<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+  				<span>Tot Net</span>
+  			</li>
+  			
+  			<li>
+  				$<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+  				<span>IVA</span> 
+  			</li>
+  			
+  			<li>
+  				$<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+  				<span>IVA</span>
+  			</li>
+  			
+  			<li>
+  				$<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+  				<span>Acum. Ve</span>
+  			</li>
+  			
+  			<li>
+  		        $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+  				<span>Acum. Cicl </span> 
+  			</li>
+  			
+  			<li>
+  				<%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+  				<span>Dist. prom.</span>
+  			</li>
+  		</ul>
+  	  </div>
+
+      <div class="data-board-mobile">
+          <div>
+          <%= @deliveries.length %>
+          <span>Envios</span>
+          </div>
+
+          <div>
+          $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+          <span>Tot Net</span>
+          </div>
+          
+          <div>
+          $<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+          <span>IVA</span> 
+          </div>
+
+          <div>
+          $<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+          <span>IVA</span>
+          </div>
+
+          <div>
+          $<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+          <span>Acum. Ve</span>
+          </div>
+
+          <div>
+              $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+          <span>Acum. Cicl </span> 
+          </div>
+
+          <div>
+          <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+          <span>Dist. prom.</span>
+          </div>
+      </div>	
+  	</div>	
+  </div>
 	
 </div>
 
 
 
-
 <div class="infotable modal">
     <ul class="infotable-nav" id="imageGallery">
-      <li><a class='' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a></li>
-      <li><%= link_to "REVISAR", "#", class: "btn verde" %></li>
-      <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
-      <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
+        <li><a class='' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a></li>
+        <li><%= link_to "REVISAR", "#", class: "btn verde" %></li>
+        <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
+        <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
     </ul>
+    
 
-
-	
 <!--  <ul id='dropdown1' class='dropdown-content'>
         <% if params[:state].blank? && params[:confirmed].blank? && params[:pay].blank? && params[:sender_pay].blank?%>
             <li><%= link_to "Todos", admin_deliveries_path() %></li>
@@ -134,71 +171,72 @@
 
 
     <div class="infotable-inner">
-		
-		<div class="callout">
-			<h3>Welcome amigo!</h3>
-		</div>
-			
-		<div class="infotable-filters">
-		  <div class="input-field">
-			<%= select("delivery", "sender", sender_options, {include_blank: "Todos", selected: @sender}, :onchange => 'filter();') %>
-		  </div>
-		  <div class="input-field">
- 			&nbsp;
-		  </div>
-		  <div class="input-field">
-			<%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
-		  </div>
-		  <div class="input-field">
-			<%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
-		  </div>
-		</div>
+    	
+    	<div class="callout">
+    		<h3>Welcome amigo!</h3>
+    	</div>
+    		
+    	<div class="infotable-filters">
+            <div class="input-field">
+                <%= select("delivery", "sender", sender_options, {include_blank: "Todos", selected: @sender}, :onchange => 'filter();') %>
+            </div>
+            <div class="input-field">
+            	&nbsp;
+            </div>
+            <div class="input-field">
+                <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+            </div>
+            <div class="input-field">
+                <%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+            </div>
+    	</div>
     </div>
 
-      <script>
-    	  var filter = function(){
-    		  console.log($('#delivery_month').val());
-    		  console.log($('#delivery_year').val());
-    		  var query = updateQueryStringParameter(window.location.href, 'month', $('#delivery_month').val());
-    		  query = updateQueryStringParameter(query, 'year', $('#delivery_year').val());
-    		  query = updateQueryStringParameter(query, 'sender', $('#delivery_sender').val());
-    		  window.open(query , "_self");
-    	  };
+    <script>
+        var filter = function(){
+            console.log($('#delivery_month').val());
+            console.log($('#delivery_year').val());
+            var query = updateQueryStringParameter(window.location.href, 'month', $('#delivery_month').val());
+            query = updateQueryStringParameter(query, 'year', $('#delivery_year').val());
+            query = updateQueryStringParameter(query, 'sender', $('#delivery_sender').val());
+            window.open(query , "_self");
+        };
 
-    	  function updateQueryStringParameter(uri, key, value) {
-    		  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-    		  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-    		  if (uri.match(re)) {
-    			  return uri.replace(re, '$1' + key + "=" + value + '$2');
-    		  }
-    		  else {
-    			  return uri + separator + key + "=" + value;
-    		  }
-    	  }
-      </script>
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+    </script>
 
     <div class="table">
-      <table class="bordered centered">
+        <table class="bordered centered">
         <thead>
         <tr>
-          <th>ID</th>
-          <th>Empresa</th>
-          <th>Ciclista</th>
-          <th>Servicio</th>
-          <th>Destinatario</th>
-          <th>Estado</th>
-          <th>Confirmado</th>
-          <th>$VX</th>
-          <th>$Ciclista</th>
-          <th class="actions" colspan="3">Acciones</th>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Ciclista</th>
+            <th>Servicio</th>
+            <th>Destinatario</th>
+            <th>Estado</th>
+            <th>Confirmado</th>
+            <th>$VX</th>
+            <th>$Ciclista</th>
+            <th class="actions" colspan="3">Acciones</th>
         </tr>
         </thead>
+
         <tbody>
         <% @deliveries.each do |delivery| %>
             <tr>
-              <td><%= link_to (sprintf '%04d', delivery.id), admin_delivery_path(delivery) %></td>
-              <td><%= link_to delivery.sender.business_name, admin_sender_path(delivery.sender) %></td>
-              <td>
+                <td><%= link_to (sprintf '%04d', delivery.id), admin_delivery_path(delivery) %></td>
+                <td><%= link_to delivery.sender.business_name, admin_sender_path(delivery.sender) %></td>
+                <td>
                 <% if delivery.user.present? %>
                     <a data-position="bottom" data-delay="50" data-tooltip="
                     <%= delivery.user.first_name %> <%= delivery.user.last_name %>" class="btn-floating tooltipped green" href="<%= admin_user_path(delivery.user) %>">
@@ -208,18 +246,18 @@
                     <a data-position="bottom" data-delay="50" data-tooltip="Información no disponible aún" class="btn-floating tooltipped grey">
                       <i class="mdi-action-account-circle"></i></a>
                 <% end %>
-              </td>
-              <% if delivery.service_type == "basic"%>
-              <td><%= delivery.service_type.to_s.capitalize %></td>
-              <% else %>
-              <td style="color: red"><%= delivery.service_type.to_s.capitalize %></td>
-              <% end %> 
-              <td><%= delivery.destinatary_name %></td>
-              <td><%= get_estado delivery %></td>
-              <td><% if delivery.confirmed == 1 %>si<% else %>no<% end %></td>
-              <td>$<%= delivery.vx_comission.round %></td>
-              <td>$<%= delivery.comission %></td>
-              <td>
+                </td>
+                <% if delivery.service_type == "basic"%>
+                <td><%= delivery.service_type.to_s.capitalize %></td>
+                <% else %>
+                <td style="color: red"><%= delivery.service_type.to_s.capitalize %></td>
+                <% end %> 
+                <td><%= delivery.destinatary_name %></td>
+                <td><%= get_estado delivery %></td>
+                <td><% if delivery.confirmed == 1 %>si<% else %>no<% end %></td>
+                <td>$<%= delivery.vx_comission.round %></td>
+                <td>$<%= delivery.comission %></td>
+                <td>
                 <%= link_to admin_delivery_path(delivery), :class => 'btn-floating green' do %>
                     <i class="mdi-image-remove-red-eye"></i>
                 <% end %>
@@ -234,22 +272,40 @@
         <% end %>
         <% if @deliveries.length == 0 %>
             <tr>
-              <td class="empty" colspan="8">
-                <h4><i class="mdi-alert-error"></i> No hay carreras</h4>
-              </td>
+                <td class="empty" colspan="8">
+                     <h4><i class="mdi-alert-error"></i> No hay carreras</h4>
+                </td>
             </tr>
         <% end %>
         </tbody>
-      </table>
+        </table>
     </div>
-
-    <script>
-    	$(document).ready(function() {
-    		$('select').material_select();
-    	});
-    </script>
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+</script>
+
+<script>
+  $('.data-board-mobile').slick({
+    slidesToShow: 1,
+    swipe: true
+  });
+</script>
+
 
 
 

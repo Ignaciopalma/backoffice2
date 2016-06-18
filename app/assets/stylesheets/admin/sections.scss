@@ -22,7 +22,7 @@
 		@include outer-container;
 		padding: 1em 0;
 		
-		.data-board {
+		.data-board-desktop {
 			@include span-columns(8);
 			@include omega();
 			
@@ -47,6 +47,10 @@
 					}
 				}	
 			}
+		}
+
+		.data-board-mobile {
+
 		}
 
 		.callout{

@@ -17,6 +17,8 @@ gem 'bourbon'
 gem 'neat', '~> 1.7', '>= 1.7.4'
 gem 'refills'
 gem 'bitters'
+gem "jquery-slick-rails"
+
 
 group :development, :test do
   gem 'byebug'

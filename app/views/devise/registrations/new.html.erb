@@ -17,7 +17,7 @@
                 <p>
                   <%= f.label :password , "Contraseña", :class => 'active'%>
                   <%= f.password_field :password, autocomplete: "off", placeholder:"Ingresa tu contraseña (Min: 8)", id: "password"  %>
-                  <span class="min-pass">Debe contener minimo 8 Caracteres</span>
+                  <span class="hints min-pass">Debe contener minimo 8 Caracteres</span>
                 </p>
               </div>
 
@@ -25,7 +25,7 @@
                 <p>
                 <%= f.label :password_confirmation ,"Repetir contraseña", :class => 'active' %>
                 <%= f.password_field :password_confirmation, autocomplete: "off" , placeholder:"Repite tu contraseña", id: "confirm-password" %>
-                <span class="match-pass">No coinciden las contraseñas!</span>
+                <span class="hints match-pass">No coinciden las contraseñas!</span>
                 </p>
              </div>
 

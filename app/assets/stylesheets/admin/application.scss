@@ -19,6 +19,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
 
+*= require slick
 
 */
 
@@ -26,6 +27,7 @@
 @import "neat";
 @import "base/base";
 @import "fonts";
+@import "slick";
 
 
 
@@ -86,7 +88,7 @@ $velo-verde-oscuro: 		rgba(14,60,14,1);
 /* MEDIA QUERY */
 /* ***************** */
 
-@import "mobile";
+@import "media_queries";
 
 
 
@@ -102,7 +104,7 @@ p {
   position: relative;
 }
 
-span {
+span.hints {
   border-radius: 5px;
   display: block;
   font-size: 1.3em;
@@ -132,6 +134,15 @@ span:after {
 
 
 
+
+/* ***************** */
+/* DATA-BOARD-MOBILE */
+/* ***************** */
+
+
+.slick-slider {
+  height: 200px;
+}
 
 
 
