@@ -1,149 +1,213 @@
+<div id="Infogram-sender">
+    <%= link_to image_tag("logotipo-veloexpress.svg"), root_path, class: "main-anchor" %>
 
+    <%#= link_to new_sender_delivery_path , :class=>'title-link btn waves-effect waves-light' do %>
+<!--     <i class="mdi-content-add"></i> Crear nuevo envío
+ -->    <%# end %>
 
-<div class="container-title">
-  <div class="row wrapper">
-    <h3 class="title"><i class="mdi-maps-directions-bike"></i> Entregas</h3>
-    <%= link_to new_sender_delivery_path , :class=>'title-link btn waves-effect waves-light' do %>
-        <i class="mdi-content-add"></i> Crear nuevo envío
-    <% end %>
-  </div>
+    <div class="infogram_inner">
+
+        <div class="callout">
+            <% if admin_signed_in? %>
+            <h2 class="title valign"><i class="mdi-maps-directions-bike"></i> Hola <%= current_sender.email %></h2>
+            <p> Tu ultima galleta fue de Avena y Chocolate</p>
+            <% end %>
+
+            <div class="modal">
+                <label for="modal-1">
+                    <div class="modal-trigger">Nuevo Envio!</div>
+                </label>
+
+                <input class="modal-state" id="modal-1" type="checkbox" />
+                <div class="modal-fade-screen">
+                    <div class="modal-inner">
+                        <div class="modal-close" for="modal-1"></div>
+                        <h1>Nuevo Envio</h1>
+                        <p class="modal-intro">Ingresa los datos</p>
+                        <p class="modal-content"><%#= render 'form' %>
+                        <%#= javascript_include_tag 'admin/init_map' %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+         <div class="data-board">
+            <ul>
+                <li>
+                    <%= @deliveries.length %>
+                    <span>Envios</span>
+                </li>
+            
+                <li>
+                    $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+                    <span>Tot Net</span>
+                </li>
+                <li>
+                    <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+                    <span>Dist. prom.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="data-board-mobile">
+            <div class="slider">
+                <div>
+                    <%= @deliveries.length %>
+                <span>Envios</span>
+                </div>     
+
+                <div>    
+                    $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+                <span>Tot Net</span>
+                </div> 
+                <div>
+                    <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+                <span>Dist. prom.</span>
+                </div>
+            </div>
+        </div>  
+    </div>
 </div>
 
-<nav class="filter-nav">
-  <div class="nav-wrapper grey lighten-1">
-    <ul class="left ">
-      <% if params[:state].blank? && params[:confirmed].blank? && params[:sender_pay].blank?%>
-          <li class="active"><%= link_to "Todos", sender_deliveries_path() %></li>
-      <% else %>
-          <li><%= link_to "Todos", sender_deliveries_path() %></li>
-      <% end %>
 
-      <% State.all.each do |ix| %>
-          <% if ix.id.to_i == params[:state].to_i %>
-              <li class="active"><%= link_to ix.name, sender_deliveries_path(state: ix.id) %></li>
-          <% else %>
-              <li><%= link_to ix.name, sender_deliveries_path(state: ix.id) %></li>
-          <% end %>
-      <% end %>
-
-      <% if params[:confirmed].present? %>
-          <li class="active"><%= link_to "Confirmados", sender_deliveries_path(confirmed: 1) %> </li>
-      <% else %>
-          <li><%= link_to "Confirmados", sender_deliveries_path(confirmed: 1) %> </li>
-      <% end %>
-
-      <% if params[:sender_pay].present? && params[:sender_pay].to_i == 1 %>
-          <li class="active"><%= link_to "Por pagar", sender_deliveries_path(sender_pay: 1) %> </li>
-      <% else %>
-          <li><%= link_to "Por pagar", sender_deliveries_path(sender_pay: 1) %> </li>
-      <% end %>
-
-      <% if params[:sender_pay].present? && params[:sender_pay].to_i == 2%>
-          <li class="active"><%= link_to "Pagados", sender_deliveries_path(sender_pay: 2) %> </li>
-      <% else %>
-          <li><%= link_to "Pagados", sender_deliveries_path(sender_pay: 2) %> </li>
-      <% end %>
+<div class="infotable-sender modal">
+    <ul class="infotable-nav" id="imageGallery">
+        <li><a class='' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a></li>
+        <li><%= link_to "REVISAR", "#", class: "btn verde" %></li>
+        <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
+        <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
     </ul>
-  </div>
-</nav>
-<div class="row">
-  <div class="input-field col s8">
-    <b>Cantidad de envíos: </b> <%= @deliveries.length %>
-    <br/>
-    <b>Total acumulado: </b> $<%= number_to_currency(@total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-    <br/>
-    <b>Distancia promedio: </b> <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
-  </div>
-  <div class="input-field col s2">
-    <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
-  </div>
-  <div class="input-field col s2">
-    <%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
-  </div>
 
-  <script>
-      var filter = function(){
-          console.log($('#delivery_month').val());
-          console.log($('#delivery_year').val());
-          var query = updateQueryStringParameter(window.location.href, 'month', $('#delivery_month').val());
-          query = updateQueryStringParameter(query, 'year', $('#delivery_year').val());
-          window.open(query , "_self");
-      }
+    <ul>
+        <% if params[:state].blank? && params[:confirmed].blank? && params[:sender_pay].blank?%>
+            <li class="active"><%= link_to "Todos", sender_deliveries_path() %></li>
+        <% else %>
+            <li><%= link_to "Todos", sender_deliveries_path() %></li>
+        <% end %>
 
-      function updateQueryStringParameter(uri, key, value) {
-          var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-          var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-          if (uri.match(re)) {
-              return uri.replace(re, '$1' + key + "=" + value + '$2');
-          }
-          else {
-              return uri + separator + key + "=" + value;
-          }
-      }
-  </script>
+        <% State.all.each do |ix| %>
+            <% if ix.id.to_i == params[:state].to_i %>
+                <li class="active"><%= link_to ix.name, sender_deliveries_path(state: ix.id) %></li>
+            <% else %>
+                <li><%= link_to ix.name, sender_deliveries_path(state: ix.id) %></li>
+            <% end %>
+        <% end %>
 
-  <script>
-      $(document).ready(function() {
-          $('select').material_select();
-      });
-  </script>
+        <% if params[:confirmed].present? %>
+            <li class="active"><%= link_to "Confirmados", sender_deliveries_path(confirmed: 1) %> </li>
+        <% else %>
+            <li><%= link_to "Confirmados", sender_deliveries_path(confirmed: 1) %> </li>
+        <% end %>
 
-</div>
+        <% if params[:sender_pay].present? && params[:sender_pay].to_i == 1 %>
+            <li class="active"><%= link_to "Por pagar", sender_deliveries_path(sender_pay: 1) %> </li>
+        <% else %>
+            <li><%= link_to "Por pagar", sender_deliveries_path(sender_pay: 1) %> </li>
+        <% end %>
 
-<table class="deliveries bordered centered hoverable">
-  <thead>
-  <tr>
-    <th data-field="biker">Ciclista</th>
-    <th data-field="reciever">Destinatario</th>
-    <th data-field="start">Dirección inicio</th>
-    <th data-field="finish">Dirección entrega</th>
-    <th data-field="eta">Costo</th>
-    <th data-field="state">Estado</th>
-    <th class="actions" data-field="actions">Acciones</th>
-  </tr>
-  </thead>
+        <% if params[:sender_pay].present? && params[:sender_pay].to_i == 2%>
+            <li class="active"><%= link_to "Pagados", sender_deliveries_path(sender_pay: 2) %> </li>
+        <% else %>
+            <li><%= link_to "Pagados", sender_deliveries_path(sender_pay: 2) %> </li>
+        <% end %>
+    </ul>
 
-  <tbody>
-  <% @deliveries.each do |delivery| %>
+
+    <div class="infotable-inner">
+        <div class="infotable-filters">
+            <div class="input-field col s2">
+                <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+            </div>
+            <div class="input-field col s2">
+                <%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var filter = function(){
+            console.log($('#delivery_month').val());
+            console.log($('#delivery_year').val());
+            var query = updateQueryStringParameter(window.location.href, 'month', $('#delivery_month').val());
+            query = updateQueryStringParameter(query, 'year', $('#delivery_year').val());
+            window.open(query , "_self");
+        }
+
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+
+
+    <table class="deliveries bordered centered hoverable">
+      <thead>
       <tr>
-        <td>
-          <% if delivery.user.present? %>
-              <a data-position="bottom" data-delay="50" data-tooltip="
-                <%= delivery.user.first_name %> <%= delivery.user.last_name %>" class="btn-floating tooltipped green" href="/sender/deliveries/user_delivery/<%= delivery.user.id %>">
-                <i class=" mdi-action-account-circle"></i></a>
-          <% else %>
-              <a data-position="bottom" data-delay="50" data-tooltip="Información no disponible aún" class="btn-floating tooltipped grey">
-                <i class="mdi-action-account-circle"></i></a>
-          <% end %>
-        </td>
-        <td><%= delivery.destinatary_name %></td>
-        <td><%= delivery.address_start %></td>
-        <td><%= delivery.address_finish %></td>
-        <td>$<%= delivery.cost %></td>
-        <td><%= delivery.state.name %></td>
-        <td class="actions">
-          <%= link_to sender_delivery_path(delivery), :class => 'btn-floating  green',:confirm => 'Are you sure?' do %>
-            <i class=" mdi-image-remove-red-eye"></i>
-          <% end %>
-
-          <%= link_to edit_sender_delivery_path(delivery), :class => 'btn-floating yellow darken-2' do %>
-            <i class=" mdi-editor-mode-edit"></i>
-          <% end %>
-
-<!--          <%= link_to sender_delivery_path(delivery), :class => 'btn-floating red', :method => :delete, :data => {:confirm => 'Are you sure?'}  do %>
-            <i class=" mdi-content-clear"></i>
-          <% end %>-->
-
-        </td>
+        <th data-field="biker">Ciclista</th>
+        <th data-field="reciever">Destinatario</th>
+        <th data-field="start">Dirección inicio</th>
+        <th data-field="finish">Dirección entrega</th>
+        <th data-field="eta">Costo</th>
+        <th data-field="state">Estado</th>
+        <th class="actions" data-field="actions">Acciones</th>
       </tr>
-  <% end %>
-  <% if @deliveries.length == 0 %>
-  	<tr>
-  		<td class="empty" colspan="8">
-  			<h4><i class="mdi-alert-error"></i> No hay carreras</h4>
-  		</td>
-  	</tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+      <% @deliveries.each do |delivery| %>
+          <tr>
+            <td>
+              <% if delivery.user.present? %>
+                  <a data-position="bottom" data-delay="50" data-tooltip="
+                    <%= delivery.user.first_name %> <%= delivery.user.last_name %>" class="btn-floating tooltipped green" href="/sender/deliveries/user_delivery/<%= delivery.user.id %>">
+                    <i class=" mdi-action-account-circle"></i></a>
+              <% else %>
+                  <a data-position="bottom" data-delay="50" data-tooltip="Información no disponible aún" class="btn-floating tooltipped grey">
+                    <i class="mdi-action-account-circle"></i></a>
+              <% end %>
+            </td>
+            <td><%= delivery.destinatary_name %></td>
+            <td><%= delivery.address_start %></td>
+            <td><%= delivery.address_finish %></td>
+            <td>$<%= delivery.cost %></td>
+            <td><%= delivery.state.name %></td>
+            <td class="actions">
+              <%= link_to sender_delivery_path(delivery), :class => 'btn-floating  green',:confirm => 'Are you sure?' do %>
+                <i class=" mdi-image-remove-red-eye"></i>
+              <% end %>
+
+              <%= link_to edit_sender_delivery_path(delivery), :class => 'btn-floating yellow darken-2' do %>
+                <i class=" mdi-editor-mode-edit"></i>
+              <% end %>
+
+              <%= link_to sender_delivery_path(delivery), :class => 'btn-floating red', :method => :delete, :data => {:confirm => 'Are you sure?'}  do %>
+                <i class=" mdi-content-clear"></i>
+              <% end %>
+
+            </td>
+          </tr>
+      <% end %>
+      <% if @deliveries.length == 0 %>
+      	<tr>
+      		<td class="empty" colspan="8">
+      			<h4><i class="mdi-alert-error"></i> No hay carreras</h4>
+      		</td>
+      	</tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
 

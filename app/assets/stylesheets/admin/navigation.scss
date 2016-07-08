@@ -28,11 +28,12 @@
 }
 
 nav {
-  position: absolute;
+  position: relative;
   width: 100%;
   padding: 0 20px;
   height: 74px !important;
   border-bottom: 1px solid rgba(255,255,255,0.4);
+  background-color: rgba(14,60,14,1);
 	
 	.nav-wrapper {
 		@include outer-container;

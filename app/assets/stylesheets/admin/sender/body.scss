@@ -1,8 +1,4 @@
-/* ***************** */
-/* 02.1 INFOGRAM */
-/* ***************** */
-
-#Infogram {
+#Infogram-sender {
   	padding: 0 20px;
 	padding-top: 85px;
 	height: 550px;
@@ -52,7 +48,6 @@
 
 		@include media(min-width 740px) {
 			.data-board-mobile {
-				display: none;
 				div.slider {
 					button.slick-prev:before {
 						content: "<";
@@ -84,7 +79,7 @@
 }
 
 @include media(max-width 740px) {
-	#Infogram {
+	#Infogram-sender {
 		padding-top: 19px;
 		height: 900px;
 		
@@ -196,16 +191,10 @@
 	}
 }
 
-
-/* ***************** */
-/* 02.2 INFOTABLE */
-/* ***************** */
-
-
-.infotable{
+.infotable-sender {
 	@include outer-container;
   	background-color: $velo-gris;
-	margin-top: -200px;
+	margin-top: 0;
 
   .infotable-nav {
       background-color: rgba(14,60,14,1);
@@ -255,18 +244,4 @@
     	border: 1px solid #ccc;
 		}
 	}	
-}
-
-#overlay {
-	background-color: rgba(10,10,10,0.7);
-	width: 100%;
-	height: 3000px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: none;
-}
-
-#modal2 {
-	display: none;
 }
