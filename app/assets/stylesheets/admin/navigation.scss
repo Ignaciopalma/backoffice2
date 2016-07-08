@@ -1,16 +1,46 @@
+@include media(min-width 740px) {
+	.slicknav_menu {
+		display:none;
+	}
+} 
+
+@include media(max-width 740px) {
+	nav {
+		display: none;
+	}
+}
+
+.slicknav_menu {
+	background-color: rgba(14,60,14,1);
+
+	.slicknav_btn {
+	    background-color: rgba(14,60,14,1);
+	}
+
+	.slicknav_nav {
+		font-family: $secondary-font;
+
+		li {
+			font-size: 1.5em;
+			letter-spacing: 0.07;
+		}
+	}
+}
+
 nav {
   position: absolute;
   width: 100%;
   padding: 0 20px;
   height: 74px !important;
   border-bottom: 1px solid rgba(255,255,255,0.4);
-  border-top: 3px solid $velo-verde;
 	
 	.nav-wrapper {
 		@include outer-container;
 	
 		.masthead{
-			@include span-columns(6);
+			@include span-columns(4);
+
+			padding-left: 7%;
 		}
 		
 		ul a {
@@ -18,10 +48,12 @@ nav {
 
 			font-family: $secondary-font;
 			text-transform: uppercase;
-			letter-spacing: 0.05em;		
+			// letter-spacing: 0.05em;		
 			text-decoration: none;
-			font-size: 1.05em;
+			// font-size: 1.05em;
 			line-height: 2.4em;
+			font-size: 1.2em;
+    		letter-spacing: 0.125em;
 			color: rgba(255,255,255,0.95);
 
 			padding: 15px 15px 0 5px;
@@ -30,10 +62,13 @@ nav {
 		
 		
 		.main-navigation {
-			@include span-columns(6);
+			@include span-columns(8);
 			@include omega();
 
 			height: 100%;
+		    padding-left: 81px;
+    		padding-right: 0;
+
 
 			li {
 				@include span-columns(3);
@@ -46,7 +81,7 @@ nav {
 		}
 
 		.main-anchor img {
-			width: 160px;
+			width: 181px;
 			margin: 1.3em 0;
 		}		
 		

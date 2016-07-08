@@ -4,7 +4,12 @@
   <title>Velo Express</title>
   <link rel="stylesheet" href="/assets/normalize.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'admin/slick.css', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'admin/slick-theme', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'slick.min.js', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,5 +19,10 @@
 		<%= yield %>
 	</div>
 
+
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<%= javascript_include_tag 'slick.min.js', 'data-turbolinks-track' => true %>
 </body>
 </html>

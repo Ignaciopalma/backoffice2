@@ -1,0 +1,111 @@
+<nav><!-- Esta es nuestra barra global de navegación -->
+  <div class="nav-wrapper">
+  	<div class="masthead"> 
+      <% if admin_signed_in? %>
+          <a href="/admin/deliveries" class="brand-logo"></a>
+      <% elsif sender_signed_in? %>
+          <a href="/sender/deliveries" class="brand-logo"></a>
+      <% end %>
+  		<%= link_to image_tag("logotipo-veloexpress.svg"), root_path, class: "main-anchor" %>
+  	</div>	
+  		
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      
+  	<ul class="main-navigation" id="menu">
+        <% if admin_signed_in? %>
+            <li id="users">
+              <a href="users">Usuarios</a>
+            </li>
+            <li id="senders">
+              <a href="senders">Empresas</a>
+            </li>
+            <li id="deliveries">
+              <a href="deliveries">Entregas</a>
+            </li>
+            <li> <%= link_to('Cerrar sesión', destroy_admin_session_path, :method => :delete) %></li>
+        <% elsif sender_signed_in? %>
+            <li id="deliveries">
+              <a href="/sender/deliveries">Entregas</a>
+            </li>
+        <% end %>
+    </ul>
+
+  </div>
+
+<script>
+  $(function(){
+    $('#menu').slicknav();
+  });
+</script>
+  
+  <ul class="side-nav" id="mobile-demo">
+    <li>
+      <a href="sass.html">
+        <i class="mdi-action-account-circle left"></i>
+        <% if sender_signed_in? %>
+            <%= current_sender.email %>
+        <% elsif admin_signed_in? %>
+            <%= current_admin.email %>
+        <% end %>
+      </a>
+    </li>
+    <% if admin_signed_in? %>
+        <li>
+          <%= link_to  admin_users_path do %>
+              <i class="mdi-action-account-child left"></i> Usuarios
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_senders_path do  %>
+              <i class="mdi-action-wallet-travel left"></i> Empresas
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_deliveries_path do %>
+              <i class="mdi-maps-directions-bike left"></i> Entregas
+          <% end %>
+        </li>
+    <% elsif sender_signed_in? %>
+        <li>
+          <a href="/sender/deliveries">
+            <i class="mdi-maps-directions-bike left"></i> Entregas
+          </a>
+        </li>
+    <% end %>
+
+    <% if sender_signed_in? %>
+        <li>
+          <%= link_to('Cerrar sesión', destroy_sender_session_path, :method => :delete) %>
+        </li>
+    <% end %>
+    <% if admin_signed_in? %>
+        <li> <%= link_to('Comunas', admin_available_areas_path) %></li>
+        <li> <%= link_to('Precios', admin_pricings_path) %></li>
+        <li> <%= link_to('Problemas', admin_problems_path) %></li>
+        <li>
+          <%= link_to('Cerrar sesión', destroy_admin_session_path, :method => :delete) %>
+        </li>
+    <% end %>
+  </ul>
+  <ul id="user-dropdown" class="dropdown-content">
+    <li class="divider"></li>
+    <li class="divider"></li>
+    <% if sender_signed_in? %>
+        <li><a href="/sender/perfil">Perfil</a></li>
+        <li>
+          <%= link_to('Cerrar sesión', destroy_sender_session_path, :method => :delete) %>
+        </li>
+    <% end %>
+    <% if admin_signed_in? %>
+        <li> <%= link_to('Comunas', admin_available_areas_path) %></li>
+        <li> <%= link_to('Precios', admin_pricings_path) %></li>
+        <li> <%= link_to('Problemas', admin_problems_path) %></li>
+        <li>
+          <%= link_to('Cerrar sesión', destroy_admin_session_path, :method => :delete) %>
+        </li>
+    <% end %>
+    <li class="divider"></li>
+  </ul>
+</nav>
+
+

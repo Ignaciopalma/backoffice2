@@ -1,5 +1,6 @@
 <div id="Infogram" > <!-- INFOGRAM -->
-	
+	<%= link_to image_tag("logotipo-veloexpress.svg"), root_path, class: "main-anchor" %>
+
 	<div class="infogram_inner">
 
 	  <div class="callout">
@@ -27,7 +28,6 @@
 
     
 	 <div class="data-board">
-  	 <div class="data-board-desktop">
   		<ul>
   			<li>
   				<%= @deliveries.length %>
@@ -64,50 +64,49 @@
   				<span>Dist. prom.</span>
   			</li>
   		</ul>
-  	  </div>
+  	</div>
 
-      <div class="data-board-mobile">
-          <div>
-          <%= @deliveries.length %>
-          <span>Envios</span>
-          </div>
+    <div class="data-board-mobile">
+        <div class="slider">
+            <div>
+                <%= @deliveries.length %>
+            <span>Envios</span>
+            </div>     
 
-          <div>
-          $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-          <span>Tot Net</span>
-          </div>
-          
-          <div>
-          $<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-          <span>IVA</span> 
-          </div>
+            <div>    
+                $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+            <span>Tot Net</span>
+            </div> 
 
-          <div>
-          $<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-          <span>IVA</span>
-          </div>
+            <div>     
+                $<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+            <span>IVA</span> 
+            </div>
 
-          <div>
-          $<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-          <span>Acum. Ve</span>
-          </div>
+            <div>    
+                $<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+            <span>IVA</span>
+            </div>
 
-          <div>
-              $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
-          <span>Acum. Cicl </span> 
-          </div>
+            <div>
+                $<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+            <span>Acum. Ve</span>
+            </div>
 
-          <div>
-          <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
-          <span>Dist. prom.</span>
-          </div>
-      </div>	
-  	</div>	
+            <div> 
+                $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+            <span>Acum. Cicl </span> 
+            </div>
+
+            <div>
+                <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+            <span>Dist. prom.</span>
+            </div>
+        </div>
+    </div>	
   </div>
 	
 </div>
-
-
 
 <div class="infotable modal">
     <ul class="infotable-nav" id="imageGallery">
@@ -293,18 +292,234 @@
 
 
 
+
+
+
+
+
+
+
+<div class="infotable-mobile modal">
+
+    <ul class="infotable-nav" id="imageGallery">
+        <li><a class='' href="admin_deliveries_path()" data-beloworigin="true" href='#' data-activates='dropdown1'>Todos</a></li>
+        <li><%= link_to "REVISAR", "#", class: "btn verde" %></li>
+        <li><%= link_to "RESEÑAS", "#", class: "btn verde" %></li>
+        <li><%= link_to "FAQ", "#", class: "btn verde" %></li>
+    </ul>
+
+
+    <!--  <ul id='dropdown1' class='dropdown-content'>
+        <% if params[:state].blank? && params[:confirmed].blank? && params[:pay].blank? && params[:sender_pay].blank?%>
+            <li><%= link_to "Todos", admin_deliveries_path() %></li>
+        <% else %>
+            <li><%= link_to "Todos", admin_deliveries_path() %></li>
+        <% end %>
+
+        <% State.all.each do |ix| %>
+            <% if ix.id.to_i == params[:state].to_i %>
+                <li class="active"><%= link_to ix.name, admin_deliveries_path(state: ix.id) %></li>
+            <% else %>
+                <li><%= link_to ix.name, admin_deliveries_path(state: ix.id) %></li>
+            <% end %>
+        <% end %>
+        <% if params[:confirmed].present? %>
+            <li class="active"><%= link_to "Confirmados", admin_deliveries_path(confirmed: 1) %> </li>
+        <% else %>
+            <li><%= link_to "Confirmados", admin_deliveries_path(confirmed: 1) %> </li>
+        <% end %>
+
+            <li class="divider"></li>
+
+        <% if params[:sender_pay].present? && params[:sender_pay].to_i == 1 %>
+            <li class="active"><%= link_to "Por pagar (Empresa)", admin_deliveries_path(sender_pay: 1) %> </li>
+        <% else %>
+            <li><%= link_to "Por pagar (Empresa)", admin_deliveries_path(sender_pay: 1) %> </li>
+        <% end %>
+
+        <% if params[:sender_pay].present? && params[:sender_pay].to_i == 2 %>
+            <li class="active"><%= link_to "Pagados (Empresa)", admin_deliveries_path(sender_pay: 2) %> </li>
+        <% else %>
+            <li><%= link_to "Pagados (Empresa)", admin_deliveries_path(sender_pay: 2) %> </li>
+        <% end %>
+
+        <% if params[:pay].present? and params[:pay].to_i == 1 %>
+            <li class="active"><%= link_to "Por pagar (Ciclista)", admin_deliveries_path(pay: 1) %> </li>
+        <% else %>
+            <li><%= link_to "Por pagar (Ciclista)", admin_deliveries_path(pay: 1) %> </li>
+        <% end %>
+
+        <% if params[:pay].present? and params[:pay].to_i == 2 %>
+            <li class="active"><%= link_to "Pagados (Ciclista)", admin_deliveries_path(pay: 2) %> </li>
+        <% else %>
+            <li><%= link_to "Pagados (Ciclista)", admin_deliveries_path(pay: 2) %> </li>
+        <% end %>
+      </ul>  -->
+
+
+
+
+
+
+    <div class="infotable-inner">
+        
+        <div class="callout">
+            <h3>Welcome amigo!</h3>
+        </div>
+            
+        <div class="infotable-filters">
+            <div class="input-field">
+                <%= select("delivery", "sender", sender_options, {include_blank: "Todos", selected: @sender}, :onchange => 'filter();') %>
+            </div>
+            <div class="input-field">
+                &nbsp;
+            </div>
+            <div class="input-field">
+                <%= select("delivery", "month", month_options, {include_blank: "Todos los meses", selected: @month}, :onchange => 'filter();') %>
+            </div>
+            <div class="input-field">
+                <%= select("delivery", "year", anos_options, {include_blank: "Todos los años", selected: @year}, :onchange => 'filter();') %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var filter = function(){
+            console.log($('#delivery_month').val());
+            console.log($('#delivery_year').val());
+            var query = updateQueryStringParameter(window.location.href, 'month', $('#delivery_month').val());
+            query = updateQueryStringParameter(query, 'year', $('#delivery_year').val());
+            query = updateQueryStringParameter(query, 'sender', $('#delivery_sender').val());
+            window.open(query , "_self");
+        };
+
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+    </script>
+
+    <div class="table">
+        <table class="bordered centered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Ciclista</th>
+            <th>Servicio</th>
+            <th>Destinatario</th>
+            <th>Estado</th>
+            <th>Confirmado</th>
+            <th>$VX</th>
+            <th>$Ciclista</th>
+            <th class="actions" colspan="3">Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @deliveries.each do |delivery| %>
+            <tr>
+                <td><%= link_to (sprintf '%04d', delivery.id), admin_delivery_path(delivery) %></td>
+                <td><%= link_to delivery.sender.business_name, admin_sender_path(delivery.sender) %></td>
+                <td>
+                <% if delivery.user.present? %>
+                    <a data-position="bottom" data-delay="50" data-tooltip="
+                    <%= delivery.user.first_name %> <%= delivery.user.last_name %>" class="btn-floating tooltipped green" href="<%= admin_user_path(delivery.user) %>">
+                      <i class=" mdi-action-account-circle"></i>
+                    </a>
+                <% else %>
+                    <a data-position="bottom" data-delay="50" data-tooltip="Información no disponible aún" class="btn-floating tooltipped grey">
+                      <i class="mdi-action-account-circle"></i></a>
+                <% end %>
+                </td>
+                <% if delivery.service_type == "basic"%>
+                <td><%= delivery.service_type.to_s.capitalize %></td>
+                <% else %>
+                <td style="color: red"><%= delivery.service_type.to_s.capitalize %></td>
+                <% end %> 
+                <td><%= delivery.destinatary_name %></td>
+                <td><%= get_estado delivery %></td>
+                <td><% if delivery.confirmed == 1 %>si<% else %>no<% end %></td>
+                <td>$<%= delivery.vx_comission.round %></td>
+                <td>$<%= delivery.comission %></td>
+                <td>
+                <%= link_to admin_delivery_path(delivery), :class => 'btn-floating green' do %>
+                    <i class="mdi-image-remove-red-eye"></i>
+                <% end %>
+                <%= link_to edit_admin_delivery_path(delivery), :class => 'btn-floating yellow darken-2 ' do %>
+                    <i class="mdi-editor-mode-edit"></i>
+                <% end %>
+                <%= link_to admin_delivery_path(delivery), :class => 'btn-floating red',  :method => :delete , :data => {:confirm => '¿Seguro que deseas eliminar esta entrega?'} do %>
+                    <i class="mdi-content-clear"></i>
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+        <% if @deliveries.length == 0 %>
+            <tr>
+                <td class="empty" colspan="8">
+                     <h4><i class="mdi-alert-error"></i> No hay carreras</h4>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+        </table>
+    </div>
+    
+</div>
+
+
+<div class="slider">
+  <div>
+    <%= @deliveries.length %>
+    <span>Envios</span>
+  </div>     
+
+  <div>    
+    $<%= number_to_currency(@costo_total, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <span>Tot Net</span>
+  </div> 
+
+  <div>     
+    $<%= number_to_currency(@costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <span>IVA</span> 
+  </div>
+
+  <div>    
+    $<%= number_to_currency(@costo_total + @costo_total*0.19, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <span>IVA</span>
+  </div>
+
+  <div>
+    $<%= number_to_currency(@monto_vx, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <span>Acum. Ve</span>
+  </div>
+
+  <div> 
+    $<%= number_to_currency(@monto_ciclistas, precision: 0, unit: "", separator: ".", delimiter: ",") %>
+    <span>Acum. Cicl </span> 
+  </div>
+
+  <div>
+    <%= number_to_human(@distancia, precision: 2, unit: "", separator: ".", delimiter: ",") %>kms
+    <span>Dist. prom.</span>
+  </div>
+</div>  
+
+
+
 <script>
 	$(document).ready(function() {
 		$('select').material_select();
 	});
 </script>
 
-<script>
-  $('.data-board-mobile').slick({
-    slidesToShow: 1,
-    swipe: true
-  });
-</script>
 
 
 

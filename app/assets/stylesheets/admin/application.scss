@@ -19,15 +19,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
 
-*= require slick
-
 */
 
 @import "bourbon";
 @import "neat";
 @import "base/base";
 @import "fonts";
-@import "slick";
 
 
 
@@ -117,7 +114,7 @@ span.hints {
   padding: 7px 10px;
   color: #fff;
 }
-span:after {
+span.hints:after {
   right: 100%;
   top: 50%;
   border: solid transparent;
