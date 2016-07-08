@@ -5,6 +5,7 @@
 <% end %>
 
 <div class="modal-form-container">
+	<%= link_to image_tag("logotipo-veloexpress.svg"), root_path, class: "main-anchor" %>
 	<div class="form-title">
 		<% if (resource.class == Sender) %>
 			<h4><i class="mdi-action-wallet-travel"></i> Ingreso empresas</h4> 
@@ -12,44 +13,33 @@
 			<h4><i class="mdi-action-wallet-travel"></i> Ingreso administración</h4> 
 		<% end  %>
 	</div>
-	<div class="row content">
+
+	<div class="row-content">
 		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-			<div class="row" >
-				<%= devise_error_messages! %>
-
-
-				<div class="col input-field s12">
-	                <i class="mdi-communication-email prefix"></i>
-	                <%= f.label :email, "Correo", :class => 'active' %>
-					<%= f.email_field :email, autofocus: true, placeholder:"Ingresa tu correo" %>
-				</div>
-
-				<div class="col input-field s12">
-		                <i class="mdi-action-https prefix"></i>
-		                <%= f.label :password , "Contraseña", :class => 'active' %>
-						<%= f.password_field :password, autocomplete: "off", placeholder:"Ingresa tu contraseña" %>
-				</div>
-
-				<div class="col checkbox-padding s12">
-					<% if devise_mapping.rememberable? -%>
-					<%= f.check_box :remember_me, :class => "filled-in"%>
-					<%= f.label :remember_me , "Recuérdame" %>
-					<% end -%>
-				</div>
-
-				<div class="col input-field center s12 ">
-					<button class="btn waves-effect waves-light" type="submit" name="action">ingresar<i class="mdi-navigation-arrow-forward right"></i></button>
-				</div>
-
+			<%= devise_error_messages! %>
+			
+			<div class="email">
+				<%= f.email_field :email, autofocus: true, placeholder:"Ingresa tu correo" %>
 			</div>
 
+			<div class="pass">
+				<%= f.password_field :password, autocomplete: "off", placeholder:"Ingresa tu contraseña" %>
+			</div>
+
+			<div class="remember-me">
+				<% if devise_mapping.rememberable? -%>
+				<%= f.check_box :remember_me, :class => "filled-in"%>
+				<%= f.label :remember_me , "Recuérdame" %>
+				<% end -%>
+			</div>
+
+			<div class="actions">
+				<button class="btn waves-effect waves-light" type="submit" name="action">ingresar<i class="mdi-navigation-arrow-forward right"></i></button>
+			</div>
 		<% end %>
 
-		<div class="row">
-			<div class="col s12">
-				<%= render "devise/shared/links" %>
-			</div>
+		<div class="col s12">
+			<%= render "devise/shared/links" %>
 		</div>
 	</div>
 </div>

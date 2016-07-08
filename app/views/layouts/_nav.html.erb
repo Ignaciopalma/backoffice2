@@ -27,6 +27,8 @@
             <li id="deliveries">
               <a href="/sender/deliveries">Entregas</a>
             </li>
+            <li> <%= link_to('Cerrar sesión', destroy_admin_session_path, :method => :delete) %>
+            </li>
         <% end %>
     </ul>
 
